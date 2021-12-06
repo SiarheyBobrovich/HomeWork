@@ -1,4 +1,4 @@
-package Home_Work_1;
+package home_work_1;
 
 import java.util.Objects;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package Home_Work_1;
+package home_work_1;
 
 /*
 1. Побитовые операции:

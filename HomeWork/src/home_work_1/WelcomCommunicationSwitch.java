@@ -4,13 +4,12 @@ public class WelcomCommunicationSwitch implements ICommunicationPrinter {
 
     @Override
     public String welcom(String name) {
-        String welcom = "Я тебя так долго ждал";
 
         switch (name) {
             case "Вася" :
-                return "Привет!\n" + welcom;
+                return "Привет!\nЯ тебя так долго ждал";
             case "Анастасия" :
-                return welcom;
+                return "Я тебя так долго ждал";
             default:
                 return "Добрый день, а вы кто?";
         }

@@ -16,14 +16,19 @@ import java.util.Scanner;
 public class WelcomIfElseIf {
 
     public static void main(String[] args) {
+        String friend = "Вася";
+        String girlfriend = "Анастасия";
         Scanner console = new Scanner(System.in);
-        String name = console.nextLine();
-        String welcom = "Я тебя так долго ждал";
 
-        if (Objects.equals(name, "Вася")) {
-            System.out.println("Привет!\n" + welcom);
-        }else if (Objects.equals(name, "Анастасия")) {
-            System.out.println(welcom);
+        String name = console.nextLine();
+
+        boolean isFriend = Objects.equals(name, friend);
+        boolean isGirlFriend = Objects.equals(name, girlfriend);
+
+        if (isFriend) {
+            System.out.println("Привет!\nЯ тебя так долго ждал");
+        }else if (isGirlFriend) {
+            System.out.println("Я тебя так долго ждал");
         }else {
             System.out.println("Добрый день, а вы кто?");
         }

@@ -6,6 +6,7 @@ public class WelcomCommunicationIf implements ICommunicationPrinter {
 
     @Override
     public String welcom(String name) {
+
         if (Objects.equals(name, "Вася")) {
             return  "Привет!\nЯ тебя так долго ждал";
         }

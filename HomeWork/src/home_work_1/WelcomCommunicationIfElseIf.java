@@ -6,12 +6,11 @@ public class WelcomCommunicationIfElseIf implements ICommunicationPrinter {
 
     @Override
     public String welcom(String name) {
-        String welcom = "Я тебя так долго ждал";
 
         if (Objects.equals(name, "Вася")) {
-            return  "Привет!\n" + welcom;
+            return  "Привет!\nЯ тебя так долго ждал";
         } else if (Objects.equals(name, "Анастасия")) {
-            return welcom;
+            return "Я тебя так долго ждал";
         } else {
             return "Добрый день, а вы кто?";
         }

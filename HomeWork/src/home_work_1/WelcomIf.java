@@ -17,14 +17,21 @@ import java.util.Scanner;
 public class WelcomIf {
 
     public static void main(String[] args) {
+        String friend = "Вася";
+        String girlfriend = "Анастасия";
         Scanner console = new Scanner(System.in);
+
         String name = console.nextLine();
 
-        if (Objects.equals(name, "Вася")) {
+        boolean isFriend = Objects.equals(name, friend);
+        boolean isGirlFriend = Objects.equals(name, girlfriend);
+
+        if (isFriend) {
             System.out.println("Привет!");
             System.out.println("Я тебя так долго ждал");
+            return;
         }
-        if(Objects.equals(name, "Анастасия")) {
+        if(isGirlFriend) {
             System.out.println("Я тебя так долго ждал");
         }else {
             System.out.println("Добрый день, а вы кто?");

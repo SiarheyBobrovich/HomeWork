@@ -17,18 +17,18 @@ public class WelcomSwitch {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         String name = console.nextLine();
-        String welcom = "Я тебя так долго ждал";
 
         switch (name) {
             case "Вася" :
                 System.out.println("Привет!");
-                System.out.println(welcom);
+                System.out.println("Я тебя так долго ждал");
                 break;
             case "Анастасия" :
-                System.out.println(welcom);
+                System.out.println("Я тебя так долго ждал");
                 break;
             default:
                 System.out.println("Добрый день, а вы кто?");
+                break;
         }
     }
 }

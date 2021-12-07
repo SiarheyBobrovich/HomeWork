@@ -9,7 +9,7 @@ package home_work_1;
 */
 
 public class Binary {
-    /*
+
     private static boolean test = false;
 
     public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class Binary {
         }
     }
 
-     */
+
 
     public static String toBinaryString(byte number) {
         boolean isMinus = false;
@@ -43,6 +43,7 @@ public class Binary {
         //count bits used
         //вычисляем к-во используемых бит(степень 2ки)
         byte power = 0;
+
         for(int value = number / 2; value > 0; value /= 2) {
             power++;
         }
@@ -50,6 +51,7 @@ public class Binary {
         //Build a two's complement
         //собираем строку
         StringBuilder result = new StringBuilder();
+
         for(;power >= 0; power--) {
             byte value = (byte)(1 << power);
 

@@ -8,9 +8,8 @@ public class Tests {
         //Тестируем 4 задание:
         boolean weekday = false;
         boolean vacation = false;
-        Alarm alarm = new Alarm();
 
-        if (alarm.sleepIn(weekday, vacation)) {
+        if (Alarm.sleepIn(weekday, vacation)) {
             System.out.println("Можем спать дальше");
         } else {
             System.out.println("Пора идти на работу");

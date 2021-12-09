@@ -30,41 +30,18 @@ public class Binary {
 
 
     public static String toBinaryString(byte number) {
-        boolean isMinus = false;
-
-        //If a number's negative, isMinus'll be set to true and the number'll change sign (-1 bit)
         //Если число отрицательное, то устанавливаем  isMinus и меняем знак (-1 бит)
-        if(number < 0) {
-            isMinus = true;
-            number *= -1;
-            number--;
+        boolean isMinus = number < 0;
+        if(isMinus) {
+            number = (byte) (++number * -1);
         }
 
-        //count bits used
-        //вычисляем к-во используемых бит(степень 2ки)
-        byte power = 0;
-
-        for(int value = number / 2; value > 0; value /= 2) {
-            power++;
-        }
-
-        //Build a two's complement
         //собираем строку
         StringBuilder result = new StringBuilder();
 
-        for(;power >= 0; power--) {
-            byte value = (byte)(1 << power);
-
-            if(number - value >= 0) {
-                result.append(isMinus ? 0 : 1);
-                number -= value;
-            }else {
-                result.append(!isMinus ? 0 : 1);
-            }
-        }
-
-        while(result.length() % 8 != 0) {
-            result.insert(0, isMinus ? 1 : 0);
+        for(int i = 0; i < 8; i++) {
+            result.insert(0, !isMinus ? number % 2 : 1 - number % 2);
+            number /= 2;
         }
 
         return result.toString();

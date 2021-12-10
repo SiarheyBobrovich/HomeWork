@@ -1,4 +1,4 @@
-package home_work_2.Loops;
+package home_work_2.loops;
 
 /*
         1.4.* Умножать число long a = 1; пока не произойдёт переполнение.

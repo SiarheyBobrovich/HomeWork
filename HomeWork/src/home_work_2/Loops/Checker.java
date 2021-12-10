@@ -1,4 +1,4 @@
-package home_work_2.Loops;
+package home_work_2.loops;
 
 public class Checker {
 

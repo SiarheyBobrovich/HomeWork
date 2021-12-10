@@ -8,18 +8,19 @@ package home_work_2.Loops;
 
 import home_work_2.Loops.Checker;
 
+
 public class Multiplier {
 
     public static void main(String[] args) {
         long number = 0;
-        for (String s : args) {
+        for (String arg : args) {
             try {
-                number = (long) Checker.check(s, false, false, true);
+                Checker.check(arg, false, false, true);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;
             }
-
+            number = Long.parseLong(arg);
             System.out.println("Цикл:");
             count(number);
 
@@ -32,6 +33,7 @@ public class Multiplier {
     }
 
     public static void count(long num){
+        num = Checker.isMinus(num);
         long result = 1;
 
         for(int i = 1; i <= num; i++) {
@@ -51,10 +53,11 @@ public class Multiplier {
     }
 
     public static long recursive(long num, boolean isFirst) throws IllegalArgumentException {
-        if(num == 0) {
+        if (num == 0) {
             return 1;
+        }else if (isFirst) {
+            num = Checker.isMinus(num);
         }
-
         long result = num * recursive(num - 1, false);
 
         if (result < 0) {

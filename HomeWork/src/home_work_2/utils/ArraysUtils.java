@@ -24,12 +24,14 @@ public class ArraysUtils {
         int[] container = null;
 
         while (container == null) {
+
             try {
                 container = arrayFromConsole();
             }catch (NegativeArraySizeException e) {
                 System.out.println("Try again!");
             }
         }
+
         System.out.println(Arrays.toString(container));
 
         container = arrayRandom(5, 100);
@@ -46,6 +48,7 @@ public class ArraysUtils {
             System.out.println("Введите число для сохранения:");
             array[i] = console.nextInt();
         }
+
         return array;
     }
 
@@ -53,13 +56,14 @@ public class ArraysUtils {
         if (size <= 0) {
             return new int[0];
         }
+
         int[] result = new int[size];
         Random random = new Random();
 
         for (int i = 0; i < size; i++) {
             result[i] = random.nextInt(maxValueExclusion);
         }
+
         return result;
     }
-
 }

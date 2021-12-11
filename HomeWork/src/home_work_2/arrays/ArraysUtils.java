@@ -21,16 +21,24 @@ import java.util.Scanner;
 
 public class ArraysUtils {
     public static void main(String[] args) {
-        int[] container = arrayFromConsole();
+        int[] container = null;
+
+        while (container == null) {
+            try {
+                container = arrayFromConsole();
+            }catch (NegativeArraySizeException e) {
+                System.out.println("Try again!");
+            }
+        }
         System.out.println(Arrays.toString(container));
 
         container = arrayRandom(5, 100);
         System.out.println(Arrays.toString(container));
 
     }
-    public static int[] arrayFromConsole(){
+    public static int[] arrayFromConsole() throws NegativeArraySizeException {
         Scanner console = new Scanner(System.in);
-        System.out.println("Введите размер массива:");
+        System.out.println("Введите размер массива(число >= 0):");
         int length = console.nextInt();
         int[] array = new int[length];
 
@@ -42,8 +50,12 @@ public class ArraysUtils {
     }
 
     public static int[] arrayRandom(int size, int maxValueExclusion) {
+        if (size <= 0) {
+            return new int[0];
+        }
         int[] result = new int[size];
         Random random = new Random();
+
         for (int i = 0; i < size; i++) {
             result[i] = random.nextInt(maxValueExclusion);
         }

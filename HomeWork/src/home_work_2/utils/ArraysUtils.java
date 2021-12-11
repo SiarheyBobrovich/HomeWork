@@ -1,4 +1,4 @@
-package home_work_2.arrays;
+package home_work_2.utils;
 
 /*
     2.1. Создать класс ArraysUtils:

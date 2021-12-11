@@ -4,20 +4,20 @@ package home_work_2.loops;
 
 public class MultiplicationTable {
     public static void main(String[] args) {
-        int j = 2;
+        int index = 2;
 
-        for (int i = 1; i <= 10; i++) {
+        for (int multiplier = 1; multiplier <= 10; multiplier++) {
             System.out.println();
 
-            for (int k = j; k < 10; k++) {
-                System.out.printf("%d * %d = %d\t", k, i, k * i);
+            for (int number = index; number < 10; number++) {
+                System.out.printf("%d * %d = %d\t", number, multiplier, number * multiplier);
 
-                if ((k % 5 == 0 || k % 9 == 0) && i != 10) {
+                if (number % 4 == 1 && multiplier != 10) {
                     break;
-                }else if (i == 10 && k == 5){
+                }else if (multiplier == 10 && number == 5){
                     System.out.println();
-                    i = 1;
-                    j = 6;
+                    multiplier = 1;
+                    index = 6;
                     break;
                 }
             }

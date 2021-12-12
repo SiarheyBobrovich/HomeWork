@@ -6,44 +6,62 @@ package home_work_2.utils;
 		4.2.2. Шейкерная сортировка
  */
 
-import home_work_2.arrays.ArrayIterator;
-
 import java.util.Arrays;
+import java.util.Date;
 
 public class SortsUtils {
 
     public static void main(String[] args) {
 
-        int[][] array = {
-                {1, 2, 3, 4, 5, 6},
-                {1, 1, 1, 1},
-                {9, 1, 5, 99, 9, 9},
-                {12, 645, 73, 123, 756, 645},
-                {57, -7856, 45, -74, 3, 7}
-        };
+        for (int i = 0; i < 10; i++) {
+            int[] ints = ArraysUtils.arrayRandom(100, 1000);
 
-        for (int[] ints : array) {
+            //Проверяем bubbleSort
+            System.out.println("Пузырьковая сортировка: ");
+            int[] bubbleArray = Arrays.copyOf(ints, ints.length);
+            bubbleSort(bubbleArray);
+            isSorted(bubbleArray);
 
-            System.out.println("До пузырьковой сортировки : " + Arrays.toString(ints));
+            //Проверяем шейкерную сортировку
+            System.out.println("Шейкерная сортировка: ");
+            int[] shackerArray = Arrays.copyOf(ints, ints.length);
+            shakerSort(shackerArray);
+            isSorted(shackerArray);
 
-            bubbleSort(ints);
-
-            System.out.println("После пузырьковой сортировки : " + Arrays.toString(ints));
+            //Проверяем mySort
+            System.out.println("Моя сортировка: ");
+            int[] myArray = Arrays.copyOf(ints, ints.length);
+            mySort(myArray);
+            isSorted(myArray);
         }
     }
 
-//    Bubble sort
+
     public static void bubbleSort(int[] array) {
 
-        for(int i = 1; i < array.length; i++) {
+    }
 
-            if(array[i] < array[i - 1]) {
-                changePlaces(array, i);
+
+
+
+
+    //    Shaker sorting
+    public static void shakerSort(int[] array) {
+
+    }
+
+    //    mySort
+    public static void mySort(int[] array) {
+
+        for (int i = 1; i < array.length; i++) {
+
+            if (array[i] < array[i - 1]) {
+                changePlacesLeft(array, i);
             }
         }
     }
 
-    private static void changePlaces(int[] array, int index) {
+    private static void changePlacesLeft(int[] array, int index) {
 
         int buffer = array[index];
 
@@ -52,12 +70,24 @@ public class SortsUtils {
             if (buffer < array[i]) {
                 array[i + 1] = array[i];
                 array[i] = buffer;
+            }else {
+                break;
             }
         }
     }
 
-//    Shaker sorting
-    public static void shakerSort(int[] array) {
-
+    private static boolean isSorted(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] > array[i + 1]) {
+                System.out.println(false);
+                return false;
+            }
+        }
+        System.out.println(true);
+        return true;
     }
 }
+
+
+
+

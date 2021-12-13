@@ -12,15 +12,18 @@ package home_work_2.arrays;
  */
 
 import home_work_2.utils.ArraysUtils;
+import home_work_2.utils.SortsUtils;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 
 public class ArrayOperations {
+
     public static void main(String[] args) {
+
         int[] array = ArraysUtils.arrayRandom(10, 100);
-        ArrayIterator.print(array);
+        System.out.println(Arrays.toString(array));
 
         System.out.print("Сумма четных положительных элементов массива: ");
         System.out.println(evenSum(array));
@@ -36,10 +39,13 @@ public class ArrayOperations {
         System.out.print("Элементы массива, которые меньше среднего арифметического: ");
         System.out.println(Arrays.toString(elementsLessArithmeticMean(array)));
 
-        System.out.print("Два наименьших (минимальных) элемента массива: ");
         try {
+
+            System.out.print("Два наименьших (минимальных) элемента массива: ");
             System.out.println(Arrays.toString(twoMinElements(array)));
+
         }catch (IllegalArgumentException e) {
+
             e.getMessage();
         }
 
@@ -57,10 +63,13 @@ public class ArrayOperations {
 
     // 2.4.1. Сумма четных положительных элементов массива
     public static long evenSum(int[] array) {
+
         long result = 0;
 
         for (int i : array) {
+
             if (i % 2 == 0 && i > 0) {
+
                 result += i;
             }
         }
@@ -70,9 +79,11 @@ public class ArrayOperations {
 
     //2.4.2. Максимальный из элементов массива с четными индексами
     public static long maxEvenIndex(int[] array) {
+
         long max = Long.MIN_VALUE;
 
         for (int i = 0; i < array.length; i += 2) {
+
             if (max < array[i]) {
                 max = array[i];
             }
@@ -83,25 +94,33 @@ public class ArrayOperations {
 
     //2.4.3. Элементы массива, которые меньше среднего арифметического
     public static int[] elementsLessArithmeticMean(int[] array) {
+
         double sum = 0;
+
         //считаем среднее арифметическое
         for (int i : array) {
+
             sum += i;
         }
         //Вычисляем среднее арифметическое
         sum /= array.length;
         int index = 0;
+
         //считаем элементы меньше среднего арифметического
         for (int i : array) {
+
             if (i < sum) {
                 index++;
             }
         }
 
         int[] elements = new int[index];
+
         //Заполняем массив
         for (int i : array) {
+
             if (i < sum) {
+
                 elements[elements.length - index] = i;
                 index--;
             }
@@ -112,9 +131,11 @@ public class ArrayOperations {
 
     // 2.4.4. Найти два наименьших (минимальных) элемента массива
     public static int[] twoMinElements(int[] array) throws IllegalArgumentException {
+
         if (array.length < 2) {
             throw new IllegalArgumentException("Неверный размер массива");
         }else if (array.length == 2) {
+            SortsUtils.mySort(array);
             return array;
         }
 
@@ -125,6 +146,7 @@ public class ArrayOperations {
         minElements[1] = isMin ? array[1] : array[0];
 
         for (int i = 2; i < array.length; i++) {
+
             if (array[i] < minElements[0]) {
                 minElements[1] = minElements[0];
                 minElements[0] = array[i];
@@ -138,12 +160,15 @@ public class ArrayOperations {
 
     //2.4.5. Сжать массив, удалив элементы, принадлежащие интервалу
     public static void delInterval(int[] array, int from, int till) {
+
         int count = 0;
 
         for (int i = 0; i < array.length - count; i++) {
+
             boolean interval = array[i] >= from && array[i] <= till;
 
             if (interval) {
+
                 count++;
 
                 for (int j = i; j < array.length - count; j++) {
@@ -158,6 +183,7 @@ public class ArrayOperations {
 
     // 2.4.6. Сумма цифр массива
     public static long sum(int[] array) {
+
         long result = 0;
 
         for (int i : array) {

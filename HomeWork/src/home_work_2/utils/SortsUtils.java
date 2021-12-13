@@ -7,7 +7,6 @@ package home_work_2.utils;
  */
 
 import java.util.Arrays;
-import java.util.Date;
 
 public class SortsUtils {
 
@@ -23,9 +22,12 @@ public class SortsUtils {
             isSorted(bubbleArray);
 
             //Проверяем шейкерную сортировку
-            System.out.println("Шейкерная сортировка: ");
+            System.out.print("Шейкерная сортировка: ");
             int[] shackerArray = Arrays.copyOf(ints, ints.length);
+            //shackerArray = new int[]{346, 500, 861, 899, 482, 810, 119, 443, 324, 431};
+            //System.out.printf(Arrays.toString(shackerArray));
             shakerSort(shackerArray);
+
             isSorted(shackerArray);
 
             //Проверяем mySort
@@ -38,7 +40,9 @@ public class SortsUtils {
 
 
     public static void bubbleSort(int[] array) {
-
+        for (int i = 0, maxIndex = array.length - 1; i < maxIndex; maxIndex--) {
+            changeLeft(array, i, maxIndex);
+        }
     }
 
 
@@ -47,7 +51,37 @@ public class SortsUtils {
 
     //    Shaker sorting
     public static void shakerSort(int[] array) {
+        int minIndex = 0;
+        int maxIndex = array.length - 1;
+        do {
 
+            changeLeft(array, minIndex, maxIndex);
+            maxIndex--;
+            changeRight(array, minIndex, maxIndex);
+            minIndex++;
+        }while (minIndex <= maxIndex);
+    }
+
+
+
+    private static void changeLeft(int[] array, int minIndex, int maxIndex) {
+        for (int i = minIndex; i < maxIndex; i++) {
+            change(array, i + 1, i );
+        }
+    }
+
+    private static void changeRight(int[] array, int minIndex, int maxIndex) {
+        for (int i = maxIndex - 1; i >= minIndex; i--) {
+            change(array, i + 1 , i);
+        }
+    }
+
+    private static void change(int[] array, int next, int last) {
+        if (array[last] > array[next]) {
+           int buffer = array[last];
+           array[last] = array[next];
+           array[next] = buffer;
+        }
     }
 
     //    mySort
@@ -56,12 +90,12 @@ public class SortsUtils {
         for (int i = 1; i < array.length; i++) {
 
             if (array[i] < array[i - 1]) {
-                changePlacesLeft(array, i);
+                changePlaces(array, i);
             }
         }
     }
 
-    private static void changePlacesLeft(int[] array, int index) {
+    private static void changePlaces(int[] array, int index) {
 
         int buffer = array[index];
 
@@ -79,8 +113,9 @@ public class SortsUtils {
     private static boolean isSorted(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] > array[i + 1]) {
-                System.out.println(false);
+                System.out.println("-----------------------------------------------" + false);
                 return false;
+
             }
         }
         System.out.println(true);

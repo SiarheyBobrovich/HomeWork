@@ -57,14 +57,14 @@ public class SortsUtils {
             maxIndex--;
 
             changeRight(array, minIndex, maxIndex);
-            
+
             minIndex++;
 
         }while (minIndex < maxIndex);
     }
 
 
-
+    //Проход слева -> направа с заменой минимума -> налево
     private static void changeLeft(int[] array, int minIndex, int maxIndex) {
 
         for (int i = minIndex; i < maxIndex; i++) {
@@ -72,7 +72,7 @@ public class SortsUtils {
             change(array, i + 1, i );
         }
     }
-
+    //Проход справа -> налево с заменой максимума -> направа
     private static void changeRight(int[] array, int minIndex, int maxIndex) {
 
         for (int i = maxIndex - 1; i >= minIndex; i--) {
@@ -81,6 +81,7 @@ public class SortsUtils {
         }
     }
 
+    //метод смены позиций
     private static void change(int[] array, int next, int last) {
 
         if (array[last] > array[next]) {
@@ -103,6 +104,7 @@ public class SortsUtils {
         }
     }
 
+    //Проход слева - > направа с заменой минимального влево до ещё меньшего
     private static void changePlaces(int[] array, int index) {
 
         int buffer = array[index];

@@ -53,8 +53,11 @@ public class SortsUtils {
         do {
 
             changeLeft(array, minIndex, maxIndex);
+
             maxIndex--;
+
             changeRight(array, minIndex, maxIndex);
+            
             minIndex++;
 
         }while (minIndex < maxIndex);

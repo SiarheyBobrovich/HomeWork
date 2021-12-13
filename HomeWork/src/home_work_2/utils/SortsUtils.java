@@ -6,36 +6,7 @@ package home_work_2.utils;
 		4.2.2. Шейкерная сортировка
  */
 
-import java.util.Arrays;
-
 public class SortsUtils {
-
-    public static void main(String[] args) {
-
-        for (int i = 0; i < 4; i++) {
-            int[] ints = ArraysUtils.arrayRandom(10000, 1000);
-
-            //Проверяем bubbleSort
-            System.out.println("Пузырьковая сортировка: ");
-            int[] bubbleArray = Arrays.copyOf(ints, ints.length);
-            bubbleSort(bubbleArray);
-            isSorted(bubbleArray);
-
-            //Проверяем шейкерную сортировку
-            System.out.print("Шейкерная сортировка: ");
-            int[] shackerArray = Arrays.copyOf(ints, ints.length);
-            shakerSort(shackerArray);
-
-            isSorted(shackerArray);
-
-            //Проверяем mySort
-            System.out.println("Моя сортировка: ");
-            int[] myArray = Arrays.copyOf(ints, ints.length);
-            mySort(myArray);
-            isSorted(myArray);
-        }
-    }
-
 
     public static void bubbleSort(int[] array) {
 
@@ -120,7 +91,7 @@ public class SortsUtils {
         }
     }
 
-    private static void isSorted(int[] array) {
+    public static void isSorted(int[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
 

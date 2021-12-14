@@ -4,23 +4,22 @@ import java.util.Arrays;
 
 public class Sort {
 
-    private int[] sortedArray;
+    private static int[] sortTwoNumber(int first, int second) {
 
-
-    private Sort(int a, int b) {
-        sortedArray = sortInts(a, b);
-    }
-    private Sort(int a, int b, int c) {
-        sortedArray = sort(sortInts(a, b), new int[]{c});
-    }
-
-    private Sort(int[] a, int[] b) {
-        sortedArray = sort(a, b);
-    }
-    private Sort(int[] a, int[] b, int[] c) {
-        sortedArray = sort(sort(a, b), c);
+        if (first >= second) {
+            return new int[]{second, first};
+        }else {
+            return new int[]{first, second};
+        }
     }
 
+    private static int[] sortTreeNumber(int first, int second, int third) {
+        return sort(sortTwoNumber(first, second), new int[]{third});
+    }
+
+    private static int[] sortTreeArray(int[] first, int[] second, int[] third) {
+        return sort(sort(first, second), third);
+    }
 
     public static int[] sort(int[] array) {
 
@@ -28,22 +27,21 @@ public class Sort {
             return array;
         }
 
-        Sort[] sorts = firstSort(array);
+        int[][] sorts = firstSort(array);
 
-        return sorts[0].getSortedArray();
+        return sorts[0];
     }
 
-    //метод возвращает массив(Sort[]) сортированных массивов(Sort) из одного массива(int[])
-    private static Sort[] firstSort(int[] array) {
+    private static int[][] firstSort(int[] array) {
 
-        Sort[] sorts = new Sort[array.length / 2];
+        int[][] sorts = new int[array.length / 2][];
 
         for (int i = 1, sortsIndex = 0; i < array.length; i += 2, sortsIndex++) {
 
-            if (array.length - i != 2) {
-                sorts[sortsIndex] = new Sort(array[i - 1], array[i]);
+            if (i != array.length - 2) {
+                sorts[sortsIndex] = sortTwoNumber(array[i - 1], array[i]);
             } else {
-                sorts[sortsIndex] = new Sort(array[i - 1], array[i], array[i + 1]);
+                sorts[sortsIndex] = sortTreeNumber(array[i - 1], array[i], array[i + 1]);
             }
 
         }
@@ -55,20 +53,16 @@ public class Sort {
         return sorts;
     }
 
-    //метод возвращает массив(Sort[]) объединённых массивов(Sort)
-    private static Sort[] secondSort(Sort[] arraySorts) {
+    private static int[][] secondSort(int[][] arraySorts) {
 
-        Sort[] sorts = new Sort[arraySorts.length / 2];
+        int[][] sorts = new int[arraySorts.length / 2][];
 
         for (int i = 1, sortedIndex = 0; i < arraySorts.length; i += 2, sortedIndex++) {
 
-            if (i - arraySorts.length != 2) {
-                sorts[sortedIndex] = new Sort(arraySorts[i - 1].getSortedArray(), arraySorts[i].getSortedArray());
-            }
-            else {
-                sorts[sortedIndex] = new Sort(arraySorts[i - 1].getSortedArray(),
-                        arraySorts[i].getSortedArray(),
-                        arraySorts[i+1].getSortedArray());
+            if (i != arraySorts.length - 2) {
+                sorts[sortedIndex] = sort(arraySorts[i - 1], arraySorts[i]);
+            }else {
+                sorts[sortedIndex] = sortTreeArray(arraySorts[i - 1], arraySorts[i], arraySorts[i + 1]);
             }
 
         }
@@ -76,21 +70,7 @@ public class Sort {
         return sorts;
     }
 
-    //getter
-    private int[] getSortedArray() {
-        return sortedArray;
-    }
-
-    private int[] sortInts(int a, int b) {
-        return new int[]{Math.min(a, b), Math.max(b, a)};
-    }
-
-    @Override
-    public String toString() {
-        return Arrays.toString(sortedArray);
-    }
-
-    private int[] sort(int[] a, int[] b) {
+    private static int[] sort(int[] a, int[] b) {
 
         int[] result = new int[a.length + b.length];
         int index = 0;
@@ -104,20 +84,19 @@ public class Sort {
             }
 
             while (indexB < b.length) {
+
                 if(indexA >= a.length) {
                     result[index++] = b[indexB++];
+                    continue;
                 }else if (a[indexA] == b[indexB]) {
                     result[index++] = a[indexA++];
                     result[index++] = b[indexB++];
-                    break;
                 }else if (a[indexA] < b[indexB]) {
                     result[index++] = a[indexA++];
-                    break;
                 }else {
                     result[index++] = b[indexB++];
-                    break;
                 }
-
+                break;
             }
         }
 

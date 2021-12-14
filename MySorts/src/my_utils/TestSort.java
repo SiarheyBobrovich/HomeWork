@@ -9,33 +9,28 @@ public class TestSort {
 
     public static void main(String[] args) {
 
-        int[] array = ArraysUtils.arrayRandom(70_000_000, 1000);
-        int[] array2 = Arrays.copyOf(array, array.length);
+        int[] array = ArraysUtils.arrayRandom(100_000_001, 1000);
+        int length = array.length;
 
+        //Sort классом
         Date date = new Date();
         array = Sort.sort(array);
         Date date1 = new Date();
-        System.out.println(date1.getTime() - date.getTime() + "ms");
-        System.out.println("memory " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (8 * 1024));
+        System.out.println(date1.getTime() - date.getTime() + "ms - для Sort.sort()");
 
-        Date date2 = new Date();
-        array2 = Sort.sort(array2);
-        Date date3 = new Date();
-        System.out.println(date3.getTime() - date2.getTime() + "ms - Arrays.sort()");
-        System.out.println("memory " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (8 * 1024));
-
-        isSorted(array, array2);
+        System.out.printf("Начальная длина: %d. Конечная длина: %d Отсортирован? - %s", length, array.length, isSorted(array));
     }
 
-    static void isSorted(int[] a, int[] b) {
+    static String isSorted(int[] a) {
 
-        for (int i = 0; i < a.length; i++) {
+        for (int i = 0; i < a.length - 1; i++) {
 
-            if (a[i] != b[i]) {
-                System.out.println("Не верное решение!");
+            if (a[i] > a[i + 1]) {
+                return "НЕТ";
             }
 
         }
 
+        return "ДА!";
     }
 }

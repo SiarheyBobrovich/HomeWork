@@ -4,11 +4,6 @@ import java.util.Arrays;
 
 public class Sort {
 
-    public static void main(String[] args) {
-        int[] i = {1, 22, 13, 2};
-        sort(i);
-    }
-
     private int[] sortedArray;
 
 
@@ -96,14 +91,18 @@ public class Sort {
     }
 
     private int[] sort(int[] a, int[] b) {
+
         int[] result = new int[a.length + b.length];
         int index = 0;
         int indexA = 0;
         int indexB = 0;
+
         while (indexA < a.length || indexB < b.length) {
+
             if(indexB >= b.length) {
                 result[index++] = a[indexA++];
             }
+
             while (indexB < b.length) {
                 if(indexA >= a.length) {
                     result[index++] = b[indexB++];
@@ -118,8 +117,10 @@ public class Sort {
                     result[index++] = b[indexB++];
                     break;
                 }
+
             }
         }
+
         return result;
     }
 

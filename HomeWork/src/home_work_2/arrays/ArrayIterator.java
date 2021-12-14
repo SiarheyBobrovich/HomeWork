@@ -20,6 +20,7 @@ public class ArrayIterator {
         printReverse(array);
     }
 
+    //Вывод массива
     public static void print(int[] array) {
         System.out.println("Вывод массива цикл for(;;):");
 
@@ -53,106 +54,150 @@ public class ArrayIterator {
         int indexForWhile = 0;
 
         while (indexForWhile < array.length) {
+            System.out.print(array[indexForWhile]);
 
-            if (index != array.length - 1) {
-                System.out.print(array[indexForWhile] + " ");
+            if (indexForWhile != array.length - 1) {
+                System.out.print(" ");
             }else {
-                System.out.println(array[indexForWhile]);
+                System.out.println();
             }
 
             indexForWhile++;
         }
 
-        System.out.println("\nВывод массива (цикл foreach):");
+        System.out.println("Вывод массива (цикл foreach):");
+
+        int indexForeach = 0;
 
         for (int i : array) {
-            System.out.print(i + " ");
-        }
+            System.out.print(i);
 
-        System.out.println();
+            if(indexForeach != array.length - 1) {
+                System.out.print(" ");
+            }else {
+                System.out.println();
+            }
+
+            indexForeach++;
+        }
     }
 
-
-
-
-
-
+    //Вывод каждого второго элемента
     public static void printSecondElement(int[] array) {
         System.out.println("Вывод каждого второго элемента цикл for(;;):");
 
         for (int i = 0; i < array.length; i += 2) {
-            System.out.print(array[i] + " ");
+            System.out.print(array[i]);
+
+            if (i < array.length - 2) {
+                System.out.print(" ");
+            }else {
+                System.out.println();
+            }
         }
 
-        System.out.println("\nВывод каждого второго элемента (цикл do....while):");
+        System.out.println("Вывод каждого второго элемента (цикл do....while):");
 
         int index = 0;
 
         do {
-            System.out.print(array[index] + " ");
+            System.out.print(array[index]);
+
+            if (index < array.length - 2) {
+                System.out.print(" ");
+            }else {
+                System.out.println();
+            }
+
             index += 2;
 
         }while (index < array.length);
 
-        System.out.println("\nВывод каждого второго элемента (цикл while):");
+        System.out.println("nВывод каждого второго элемента (цикл while):");
 
         int indexForWhile = 0;
 
         while (indexForWhile < array.length) {
+            System.out.print(array[indexForWhile]);
 
-            System.out.print(array[indexForWhile] + " ");
+            if (indexForWhile < array.length - 2) {
+                System.out.print(" ");
+            }else {
+                System.out.println();
+            }
 
             indexForWhile += 2;
         }
 
-        System.out.println("\nВывод каждого второго элемента (цикл foreach):");
+        System.out.println("Вывод каждого второго элемента (цикл foreach):");
 
         int indexForeach = 0;
 
         for (int i : array) {
 
             if (indexForeach % 2 == 0) {
+                System.out.print(i);
 
-                System.out.print(i + " ");
-
+                if (indexForeach < array.length - 2) {
+                    System.out.print(" ");
+                } else {
+                    System.out.println();
+                }
             }
 
             indexForeach++;
         }
 
-        System.out.println();
     }
 
+    //Вывод массива в обратном порядке
     public static void printReverse(int[] array) {
         System.out.println("Вывод массива в обратном порядке цикл for(;;):");
 
         for (int i = array.length - 1; i >= 0; i--) {
-            System.out.print(array[i] + " ");
+            System.out.print(array[i]);
+
+            if (i != 0) {
+                System.out.print(" ");
+            }else {
+                System.out.println();
+            }
         }
 
-        System.out.println("\nВывод массива в обратном порядке (цикл do....while):");
+        System.out.println("Вывод массива в обратном порядке (цикл do....while):");
 
         int indexForDoWhile = array.length - 1;
 
         do {
-            System.out.print(array[indexForDoWhile] + " ");
+            System.out.print(array[indexForDoWhile]);
+
+            if (indexForDoWhile == 0) {
+                System.out.println();
+            }else {
+                System.out.print(" ");
+            }
 
             indexForDoWhile--;
 
         }while (indexForDoWhile >= 0);
 
-        System.out.println("\nВывод массива в обратном порядке (цикл while):");
+        System.out.println("Вывод массива в обратном порядке (цикл while):");
 
         int indexForWhile = array.length - 1;
 
         while (indexForWhile >= 0) {
+            System.out.print(array[indexForWhile]);
 
-            System.out.print(array[indexForWhile] + " ");
+            if (indexForWhile == 0) {
+                System.out.println();
+            }else {
+                System.out.print(" ");
+            }
 
             indexForWhile--;
         }
 
-        System.out.println("\nВывод массива в обратном порядке (цикл foreach):");
+        System.out.println("Вывод массива в обратном порядке (цикл foreach):");
 
         int[] reverse = new int[array.length];
         int reverseIndex = reverse.length - 1;
@@ -163,9 +208,17 @@ public class ArrayIterator {
             reverseIndex--;
         }
 
-        for (int i : reverse) {
+        reverseIndex = reverse.length - 1;
 
-            System.out.print(i + " ");
+        for (int i : reverse) {
+            System.out.print(i);
+
+            if (reverseIndex == 0) {
+                System.out.println();
+            }else {
+                System.out.print(" ");
+            }
+            reverseIndex--;
         }
     }
 }

@@ -40,12 +40,12 @@ public class ArraysUtils {
     }
     public static int[] arrayFromConsole() throws NegativeArraySizeException {
         Scanner console = new Scanner(System.in);
-        System.out.println("Введите размер массива(число >= 0):");
+        System.out.print("Введите размер массива(число >= 0): ");
         int length = console.nextInt();
         int[] array = new int[length];
 
         for (int i = 0; i < length; i++) {
-            System.out.println("Введите число для сохранения:");
+            System.out.print("Введите число для сохранения [" + i + "]: ");
             array[i] = console.nextInt();
         }
 

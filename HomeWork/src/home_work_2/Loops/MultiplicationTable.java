@@ -4,13 +4,42 @@ package home_work_2.loops;
 
 public class MultiplicationTable {
     public static void main(String[] args) {
+
         int index = 2;
 
         for (int multiplier = 1; multiplier <= 10; multiplier++) {
-            System.out.println();
+            if (multiplier != 1) {
+                System.out.println();
+            }
 
             for (int number = index; number < 10; number++) {
-                System.out.printf("%d * %d = %d\t", number, multiplier, number * multiplier);
+                System.out.printf("%d * %d = %d", number, multiplier, number * multiplier);
+
+                if (number % 4 == 1 && multiplier != 10) {
+                    break;
+                }else if (multiplier * number == 50){
+                    System.out.println();
+                    multiplier = 1;
+                    index = 6;
+                    break;
+                }else if (multiplier * number != 90){
+                    System.out.print("\t");
+                }
+            }
+        }
+
+
+    }
+}
+
+/*
+for (int multiplier = 1; multiplier <= 10; multiplier++) {
+            if (multiplier != 1) {
+                System.out.println();
+            }
+
+            for (int number = index; number < 10; number++) {
+                System.out.printf("%d * %d = %d", number, multiplier, number * multiplier);
 
                 if (number % 4 == 1 && multiplier != 10) {
                     break;
@@ -19,8 +48,9 @@ public class MultiplicationTable {
                     multiplier = 1;
                     index = 6;
                     break;
+                }else {
+                    System.out.print("\t");
                 }
             }
         }
-    }
-}
+ */

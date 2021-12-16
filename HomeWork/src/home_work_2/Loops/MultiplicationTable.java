@@ -2,42 +2,60 @@ package home_work_2.loops;
 
 // 1.5. Вывести таблицу умножения в консоль. В консоли должно получиться также как и на картинке (динозаврика рисовать не надо): https://www.dropbox.com/s/ibakfuppvy2w32g/multiplication_table.jpeg?dl=0
 
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class MultiplicationTable {
     public static void main(String[] args) {
 
-        int index = 2;
+        Scanner console = new Scanner(System.in);
 
-        for (int multiplier = 1; multiplier <= 10; multiplier++) {
-            if (multiplier > 1) {
-                System.out.println();
-            }else {
-                System.out.println("\t\t\tТаблица\tумножения");
-            }
+        System.out.print("Введите с какого числа начнём таблицу умножения: ");
+        int startNumber = console.nextInt();                        //Начальное число для умножения
 
-            for (int number = index; number < 10; number++) {
-                System.out.printf("%d * %d = %d", number, multiplier, number * multiplier);
+        System.out.print("Введите каким числом закончим таблицу умножения: ");
+        int maxNumber = console.nextInt();                          //До какого числа печатаем
 
-                if (number % 4 == 1 && multiplier != 10) {
-                    break;
-                }else if (multiplier * number == 50){
-                    System.out.println();
-                    multiplier = 1;
-                    index = 6;
-                    break;
-                }else if (multiplier * number != 90){
-                    System.out.print("\t");
-                }
-            }
+        System.out.print("Введите формат таблицы Width x Height!\n Введите Width: ");
+        int columnsInString = console.nextInt();                    //Колличество печатаемых столбцов
+        System.out.print("Введите Height: ");
+        int value = console.nextInt();                              //колличество строк
+
+
+        for (int i = 0; i < value; i++) {
+            int next = (i * columnsInString );           //равна стартНум + число столбцов
+            int currentColumns = columnsInString + next + startNumber;
+
+            printTable(startNumber + next, currentColumns > maxNumber ? maxNumber : startNumber + columnsInString - 1 + next);
+
+            System.out.println();
         }
-        System.out.println();
-        printDINOZAVR();
+        printDINO();
 
     }
 
-    public static void printDINOZAVR() {
-        char[][] dinosaurus ={
+
+    public static void printTable(int startNumber, int maxNumber) {     //maxNum = (startNum + число колонок) - 1
+
+        for (int i = 2; i <= 10; i++) {                                         //умножаем с 2 до 10
+
+            for (int j = startNumber; j <= maxNumber; j++) {            //числа с startNumber по currentColumns
+                String print = String.format("%d * %d = %d", j, i, i * j);
+                System.out.print(print);
+
+                if (j < maxNumber && print.length() < 12) {            //если стартовый номер < currentColumns
+                    System.out.print("\t\t");
+                }else if (j < maxNumber) {
+                    System.out.print("\t");
+                }else {
+                    System.out.println();
+                }
+            }
+        }
+
+    }
+
+    public static void printDINO() {
+        char[][] dinosaur ={
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', '*', '*', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
                 {' ', ' ', ' ', ' ', ' ', '*', '*', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
                 {' ', ' ', ' ', ' ', ' ', '8', ' ', '8', ' ', '*', '*', '*', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -69,9 +87,10 @@ public class MultiplicationTable {
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', '*', '*', '*', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '*', '*', '*', '*', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
         };
-        for (int i = 0; i < dinosaurus.length; i++) {
-            for (int j = 0; j < dinosaurus[i].length; j++) {
-                System.out.print(dinosaurus[i][j] + " ");
+
+        for (int i = 0; i < dinosaur.length; i++) {
+            for (int j = 0; j < dinosaur[i].length; j++) {
+                System.out.print(dinosaur[i][j] + " ");
             }
             System.out.println();
         }

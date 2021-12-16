@@ -15,9 +15,11 @@ import home_work_2.utils.ArraysUtils;
 public class ArrayIterator {
     public static void main(String[] args) {
         int[] array = ArraysUtils.arrayFromConsole();
+
         print(array);
         printSecondElement(array);
         printReverse(array);
+
     }
 
     //Вывод массива
@@ -38,6 +40,10 @@ public class ArrayIterator {
         int index = 0;
 
         do {
+
+            if (array.length == 0) {
+                break;
+            }
 
             if (index != array.length - 1) {
                 System.out.print(array[index] + " ");
@@ -100,7 +106,13 @@ public class ArrayIterator {
 
         int index = 0;
 
+
+
         do {
+            if (array.length == 0) {
+                break;
+            }
+
             System.out.print(array[index]);
 
             if (index < array.length - 2) {
@@ -169,6 +181,11 @@ public class ArrayIterator {
         int indexForDoWhile = array.length - 1;
 
         do {
+
+            if (array.length == 0) {
+                break;
+            }
+
             System.out.print(array[indexForDoWhile]);
 
             if (indexForDoWhile == 0) {

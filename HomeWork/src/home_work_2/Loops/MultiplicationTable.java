@@ -25,10 +25,11 @@ public class MultiplicationTable {
             int next = (i * columnsInString );           //равна стартНум + число столбцов
             int currentColumns = columnsInString + next + startNumber;
 
-            printTable(startNumber + next, currentColumns > maxNumber ? maxNumber : startNumber + columnsInString - 1 + next);
-
+            printTable(startNumber + next, currentColumns > maxNumber ?
+                    maxNumber : startNumber + columnsInString - 1 + next);
             System.out.println();
         }
+
         printDINO();
 
     }

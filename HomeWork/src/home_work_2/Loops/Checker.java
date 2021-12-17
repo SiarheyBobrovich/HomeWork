@@ -17,6 +17,7 @@ public class Checker {
             throw new IllegalArgumentException("Введено не число");
         }
     }
+
     public static long isMinus(long num) {
         if (num < 0) {
             num *= -1;

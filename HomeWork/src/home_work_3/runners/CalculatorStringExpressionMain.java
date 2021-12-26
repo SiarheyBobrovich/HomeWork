@@ -1,12 +1,8 @@
 package home_work_3.runners;
 
 import home_work_3.calcs.additional.CalculatorStringExpression;
-import home_work_3.calcs.api.ICalculator;
 import home_work_3.calcs.simple.CalculatorWithMathExtends;
 
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class CalculatorStringExpressionMain {
     public static void main(String[] args) {

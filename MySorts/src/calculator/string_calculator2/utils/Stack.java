@@ -1,4 +1,4 @@
-package home_work_3.calcs.additional.string_calculator.utils;
+package calculator.string_calculator2.utils;
 
 public class Stack {
     private char[] signsStack;

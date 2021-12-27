@@ -1,6 +1,6 @@
-package home_work_3.calcs.additional.string_calculator.main;
+package calculator.string_calculator.main;
 
-import home_work_3.calcs.additional.string_calculator.dto.CalculatorStringExpression;
+import calculator.string_calculator.dto.CalculatorStringExpression;
 import home_work_3.calcs.simple.CalculatorWithMathExtends;
 
 public class CalculatorStringExpressionMain {

@@ -2,7 +2,6 @@ package home_work_4.service;
 
 import home_work_4.dbo.DataContainer;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class ContainerService {
@@ -33,5 +32,11 @@ public class ContainerService {
             }
         }
         return true;
+    }
+
+    public boolean run(Integer item) {
+        DataContainer<Integer> dataContainer = new DataContainer<>(new Integer[]{1, 2, 3, 777, 3});
+        boolean isDeleted = dataContainer.deleteItem(item);
+        return isDeleted;
     }
 }

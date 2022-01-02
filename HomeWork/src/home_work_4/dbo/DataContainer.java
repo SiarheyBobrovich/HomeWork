@@ -7,16 +7,19 @@ package home_work_4.dbo;
 
  */
 
-import java.lang.reflect.*;
-import java.util.Objects;
+import java.util.*;
 
-public class DataContainer<T> {
+public class DataContainer<T> implements Iterable<T> {
     private T[] data;
     private int size;
 
     public DataContainer(T[] data) {
         this.data = data;
         this.size = data.length;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     /**
@@ -36,14 +39,8 @@ public class DataContainer<T> {
             }
         }
 
-        T[] newContainer = (T[])Array.newInstance(data.getClass().getComponentType(), data.length + 1);
-
-        for (int i = 0; i < data.length; i++) {
-            newContainer[i] = data[i];
-        }
-
-        newContainer[size] = item;
-        data = newContainer;
+        data = Arrays.copyOf(data, size + 1);
+        data[size] = item;
 
         return this.size++;
     }
@@ -79,12 +76,10 @@ public class DataContainer<T> {
             return false;
         }
 
-        T[] newContainer = (T[])Array.newInstance(data.getClass().getComponentType(), size - 1);
-        for (int i = 0, j = 0; i < size; i++) {
-            if (i != index) {
-                newContainer[j] = data[i];
-                j++;
-            }
+        T[] newContainer = Arrays.copyOf(data, size - 1);
+
+        if (size - (index + 1) >= 0) {
+            System.arraycopy(data, index + 1, newContainer, index + 1 - 1, size - (index + 1));
         }
 
         size--;
@@ -93,6 +88,11 @@ public class DataContainer<T> {
         return true;
     }
 
+    /**
+     * Метод удаления первого найденого элемента по значению
+     * @param item - значение элемента
+     * @return true - если элемент был найден и удалён, иначе false
+     */
     public boolean deleteItem(T item) {
         int index = -1;
         for (int i = 0; i < size; i++) {
@@ -104,4 +104,133 @@ public class DataContainer<T> {
 
         return index != -1 && delete(index);
     }
+
+    /**
+     * Метод сортировки DataContainer по переданной реализации сортировки
+     * @param comparator - реализация сортировки
+     */
+    public void sort(Comparator<T> comparator) {
+        boolean sorted;
+
+        do {
+            sorted = true;
+
+            for (int i = 0; i < size - 1; i++) {
+                T o1 = data[i];
+                T o2 = data[i + 1];
+
+                if (comparator.compare(o1, o2) > 0) {
+                    data[i + 1] = o1;
+                    data[i] = o2;
+                    sorted = false;
+                }
+            }
+
+        } while (!sorted);
+    }
+
+    /**
+     * Статический метод сортировки DataContainer в котором хранятся объекты-потомки Comparable
+     * @param dataContainer объект сортировки
+     */
+    public static void sort(DataContainer<? extends Comparable> dataContainer) {
+        boolean sorted;
+
+        do {
+            sorted = true;
+
+            for (int i = 0; i < dataContainer.size - 1; i++) {
+                if (dataContainer.data[i].compareTo(dataContainer.data[i + 1]) > 0) {
+                    dataContainer.changePlaces(dataContainer.getItems(), i);
+                    sorted = false;
+                }
+            }
+
+        } while (!sorted);
+    }
+
+    /**
+     * Метод смены позиции
+     * @param data - массив в котором будем менять
+     * @param index - позиция в которую будет производиться запись
+     * @param <E> - класс-потомок Comparable
+     */
+    private <E extends Comparable> void changePlaces(E[] data, int index) {
+        E buffer = data[index];
+        data[index] = data[index + 1];
+        data[index + 1] =  buffer;
+    }
+
+    /**
+     * Переопределение метода toString() класса Object
+     * @return строка из элементов DataContainer без null элементров
+     */
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < size; i++) {
+            T tmp = data[i];
+
+            if (tmp != null) {
+                result.append(tmp);
+                if (i != size - 1) {
+                    result.append(", ");
+                }
+            }
+
+        }
+
+        return result.toString();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator() {
+
+            private int index = 0;
+            private boolean isException = true;
+
+            /**
+             * Method of checks index
+             * @return index's less than size
+             */
+            @Override
+            public boolean hasNext() {
+                return this.index < size;
+            }
+
+            /**
+             *
+             * @return <T> next item
+             * @throws NoSuchElementException if index's larger than size
+             */
+            @Override
+            public T next() throws NoSuchElementException{
+                isException = false;
+
+                if (index >= size) {
+                    throw new NoSuchElementException();
+                }
+
+                return data[index++];
+            }
+
+            /**
+             * Deletes last item which were returned by method next()
+             * @throws IllegalStateException if method next() hasn't been called before
+             */
+            @Override
+            public void remove() throws IllegalStateException {
+
+                if (isException) {
+                    throw new IllegalStateException();
+                }
+
+                delete(--index);
+                isException = true;
+            }
+        };
+    }
+
 }

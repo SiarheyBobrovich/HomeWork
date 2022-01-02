@@ -2,9 +2,10 @@ package home_work_4.test;
 
 import home_work_4.dbo.DataContainer;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Iterator;
 
 class DataContainerTest {
 
@@ -68,4 +69,49 @@ class DataContainerTest {
         Assertions.assertTrue(container.deleteItem(3));
         Assertions.assertArrayEquals(new Integer[]{1, 2, 777, 3}, container.getItems());
     }
+
+    @Test
+    void sort() {
+        container = new DataContainer<>(new Integer[]{1, 7, 2, 3, 777, 3});
+        container.sort((o1, o2) -> {
+            if (o1 < o2) return 1;
+            return o1.equals(o2) ? 0 : -1;
+        });
+        Assertions.assertArrayEquals(new Integer[]{777, 7, 3, 3, 2, 1}, container.getItems());
+
+        container.sort(((o1, o2) -> o1 > o2 ? 1 : o1 == o2 ? 0 : -1));
+        Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 3, 7, 777}, container.getItems());
+
+        Assertions.assertEquals("1, 2, 3, 3, 7, 777", container.toString());
+
+        DataContainer<String> newContainer = new DataContainer<>(
+                new String[]{"1.0", "7.0", "2.0", "3.0", "777.0", "3.0"});
+        DataContainer.sort(newContainer);
+        Assertions.assertArrayEquals(new String[]{"1.0", "2.0", "3.0", "3.0", "7.0", "777.0"}, newContainer.getItems());
+
+    }
+
+    @Test
+    void iterable() {
+        container = new DataContainer<>(new Integer[]{1, 7, 2, 3, 777, 3});
+        Iterator<Integer> iterator = container.iterator();
+
+        while (iterator.hasNext()) {
+            for (int i = 0; i < container.getSize(); i++) {
+                Assertions.assertEquals(container.get(i), iterator.next());
+            }
+        }
+
+        iterator = container.iterator();
+        while (iterator.hasNext()) {
+            iterator.next();
+            iterator.remove();
+        }
+
+        Assertions.assertEquals(0, container.getSize());
+    }
+
+
+
+
 }

@@ -27,7 +27,7 @@ public class User {
         while (true) {
             result = console.nextInt();
 
-            if (result > 3 && result <= 9) {
+            if (result > 2 && result <= 9) {
                 return result;
             }
         }

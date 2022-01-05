@@ -22,16 +22,12 @@ public class HanoiGame {
     }
 
     public void run() {
-
+        draw();
 
         while (!isEnd) {
-            image.clear();
+            round();
 
-            for (Pin pin : pins) {
-                pin.draw();
-            }
-
-            image.printMyself();
+            draw();
 
             for (int i = 1; i < pins.size(); i++) {
                 isEnd = pins.get(i).isFull();
@@ -40,13 +36,19 @@ public class HanoiGame {
                 }
             }
 
-            round();
+        }
 
+        System.out.println("Поздравляю ваша игра заняла: " + count + " ходов");
+    }
 
+    private void draw() {
+        image.clear();
+
+        for (Pin pin : pins) {
+            pin.draw();
         }
 
         image.printMyself();
-        System.out.println("Поздравляю ваша игра заняла: " + count + " ходов");
     }
 
     private void setCount() {

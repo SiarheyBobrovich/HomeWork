@@ -3,7 +3,7 @@ package hanoi.dto;
 import hanoi.api.IDrawable;
 import hanoi.api.IImage;
 
-public class Pin implements IDrawable {
+public class Tower implements IDrawable {
 
     private final int x;
     private int y;
@@ -14,7 +14,7 @@ public class Pin implements IDrawable {
     private final IImage image;
 
 
-    public Pin(int x, int height, IImage image) {
+    public Tower(int x, int height, IImage image) {
         this.x = x;
         this.rings = new Figure[height];
         this.image = image;

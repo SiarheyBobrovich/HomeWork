@@ -2,6 +2,8 @@ package hanoi.service;
 
 import hanoi.api.IImage;
 import hanoi.dto.*;
+import hanoi.dto.users.UserFactory;
+import hanoi.dto.users.api.IUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +11,15 @@ import java.util.List;
 public class HanoiGame {
 
     private int count;
-    private final List<Pin> pins;
+    private final List<Tower> pins;
     private List<Character[]> save;
     private IImage image;
-    private final User user;
+    private final IUser user;
     private boolean isEnd = false;
 
-    public HanoiGame(User user) {
-        this.user = user;
-        this.pins = getPins(user.getPinCount(), user.getFigureCount());
+    public HanoiGame(int towerCount, int figureCount, int userMode) {
+        this.user = new UserFactory().get(userMode, towerCount);
+        this.pins = getPins(towerCount, figureCount);
         this.save = new ArrayList<>();
     }
 
@@ -26,7 +28,6 @@ public class HanoiGame {
 
         while (!isEnd) {
             round();
-
             draw();
 
             for (int i = 1; i < pins.size(); i++) {
@@ -35,7 +36,6 @@ public class HanoiGame {
                     break;
                 }
             }
-
         }
 
         System.out.println("Поздравляю ваша игра заняла: " + count + " ходов");
@@ -44,7 +44,7 @@ public class HanoiGame {
     private void draw() {
         image.clear();
 
-        for (Pin pin : pins) {
+        for (Tower pin : pins) {
             pin.draw();
         }
 
@@ -56,24 +56,21 @@ public class HanoiGame {
     }
 
     private void round() {
-        int from = user.getFromMove() - 1;
-        int to = user.getToMove() - 1;
-        boolean isEmptyFrom = pins.get(from).isEmpty();
-        if (!isEmptyFrom && (pins.get(to).isEmpty() || pins.get(to).isLess(pins.get(from).getFromTop()))){
-            Figure moveFigure = pins.get(from).peekRing();
-            pins.get(to).popRing(moveFigure);
+        int[] fromTo = user.getNextMove();
+        boolean isEmptyFrom = pins.get(fromTo[0]).isEmpty();
+        if (!isEmptyFrom && (pins.get(fromTo[1]).isEmpty() || pins.get(fromTo[1]).isLess(pins.get(fromTo[0]).getFromTop()))){
+            Figure moveFigure = pins.get(fromTo[0]).peekRing();
+            pins.get(fromTo[1]).popRing(moveFigure);
         }
         setCount();
     }
 
-
-
-    private List<Pin> getPins(int count, int countFigure){
-        List<Pin> result = new ArrayList<>(count);
+    private List<Tower> getPins(int count, int countFigure){
+        List<Tower> result = new ArrayList<>(count);
         image = new Image(countFigure, count);
         int x = countFigure;
         for (int i = 0; i < count; i++) {
-            Pin pin = new Pin(x, countFigure, image);
+            Tower pin = new Tower(x, countFigure, image);
 
             if (i == 0) {
                 for (int j = countFigure - 1; j >= 0; j--) {

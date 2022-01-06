@@ -12,7 +12,6 @@ public class Ring extends Figure {
 
         char[][] pictureOfRing = new char[1][2 * size + 1];
         Arrays.fill(pictureOfRing[0], (char) 9609);
-        pictureOfRing[0][pictureOfRing[0].length / 2] = String.valueOf(size).charAt(0);
         setPicture(pictureOfRing);
     }
 

@@ -4,21 +4,23 @@ import home_work_4.dbo.DataContainer;
 
 import java.util.Objects;
 
-public class ContainerService {
+//Класс сделан для пробы перегрузки метода run() и Generic
 
-    public int run(Integer[] data, Integer added) {
-        DataContainer<Integer> dataContainer = new DataContainer<>(data);
+public class ContainerService1<T extends Integer> {
+
+    public int run(T[] data, T added) {
+        DataContainer<T> dataContainer = new DataContainer<>(data);
         return dataContainer.add(added);
     }
 
-    public Integer run(Integer[] data, int index) {
+    public Integer run(T[]  data, int index) {
         DataContainer<Integer> dataContainer = new DataContainer<>(data);
         dataContainer.add(9999);
         return dataContainer.get(index);
     }
 
-    public boolean run(int index, Integer[] equalsData) {
-        DataContainer<Integer> dataContainer = new DataContainer<>(new Integer[]{1, 2, 3, 777});
+    public boolean run(int index, T[] equalsData) {
+        DataContainer<Integer> dataContainer = new DataContainer<>( new Integer[]{1, 2, 3, 777});
         dataContainer.delete(index);
 
         Integer[] in = dataContainer.getItems();
@@ -34,9 +36,8 @@ public class ContainerService {
         return true;
     }
 
-    public boolean run(Integer item) {
+    public boolean run(T item) {
         DataContainer<Integer> dataContainer = new DataContainer<>(new Integer[]{1, 2, 3, 777, 3});
-        boolean isDeleted = dataContainer.deleteItem(item);
-        return isDeleted;
+        return dataContainer.deleteItem(item);
     }
 }

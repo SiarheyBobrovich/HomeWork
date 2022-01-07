@@ -79,7 +79,7 @@ public class DataContainer<T> implements Iterable<T> {
         T[] newContainer = Arrays.copyOf(data, size - 1);
 
         if (size - (index + 1) >= 0) {
-            System.arraycopy(data, index + 1, newContainer, index + 1 - 1, size - (index + 1));
+            System.arraycopy(data, index + 1, newContainer, index, size - (index + 1));
         }
 
         size--;

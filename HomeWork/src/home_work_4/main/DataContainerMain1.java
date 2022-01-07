@@ -1,17 +1,17 @@
 package home_work_4.main;
 
-import home_work_4.dbo.DataContainer;
-import home_work_4.service.ContainerService;
+import home_work_4.service.ContainerService1;
 
-public class DataContainerMain {
+public class DataContainerMain1 {
     public static void main(String[] args) {
-        ContainerService service = new ContainerService();
+        ContainerService1<Integer> service = new ContainerService1<>();
+
         //метод int add(T item)
-        System.out.println("Index возвращаемого объекта 1 = " + service.run(new Integer[]{1, 2, 3, null, null, null}, 777));
+        System.out.println("Index возвращаемого объекта 1 = " + service.run(new Integer[]{1, 2, 3, null, null, null}, Integer.valueOf(777)));
         System.out.println("Index возвращаемого объекта 2 = " + service.run(new Integer[]{1, 2, 3, null, null, null}, null));
-        System.out.println("Index возвращаемого объекта 3 = " + service.run(new Integer[]{1, null, 3, null, null, null}, 777));
-        System.out.println("Index возвращаемого объекта 4 = " + service.run(new Integer[]{}, 777));
-        System.out.println("Index возвращаемого объекта 5 = " + service.run(new Integer[]{1, 2, 3}, 777));
+        System.out.println("Index возвращаемого объекта 3 = " + service.run(new Integer[]{1, null, 3, null, null, null}, Integer.valueOf(777)));
+        System.out.println("Index возвращаемого объекта 4 = " + service.run(new Integer[]{}, Integer.valueOf(777)));
+        System.out.println("Index возвращаемого объекта 5 = " + service.run(new Integer[]{1, 2, 3}, Integer.valueOf(777)));
 
         //T get(int index)
         System.out.println("Возвращаемы объект = " + service.run(new Integer[0], 0));

@@ -1,4 +1,4 @@
-package hanoi.dto;
+package hanoi.dto.figure.api;
 
 import hanoi.api.IDrawable;
 import hanoi.api.IImage;

@@ -2,6 +2,7 @@ package hanoi.dto;
 
 import hanoi.api.IDrawable;
 import hanoi.api.IImage;
+import hanoi.dto.figure.api.Figure;
 
 public class Tower implements IDrawable {
 
@@ -13,12 +14,11 @@ public class Tower implements IDrawable {
     private final char[][] picture;
     private final IImage image;
 
-
     public Tower(int x, int height, IImage image) {
         this.x = x;
         this.rings = new Figure[height];
         this.image = image;
-        picture = new char[][]{{'|'}};
+        picture = new char[][]{{ (char)9617}};
         freePosition = rings.length - 1;
     }
 

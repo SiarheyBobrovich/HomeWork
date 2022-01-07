@@ -16,5 +16,5 @@ public interface IImage {
     /**
      * Очищает изображение
      */
-    public void clear();
+    void clear();
 }

@@ -1,7 +1,6 @@
 package hanoi.dto.users;
 
 import hanoi.dto.users.api.PlayerUser;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AutomaticUser extends PlayerUser {
@@ -14,9 +13,12 @@ public class AutomaticUser extends PlayerUser {
 
     @Override
     public int[] getNextMove() {
+
         try {
             Thread.sleep(200);
-        }catch (InterruptedException e) {}
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return new int[] {
                 rnd.nextInt(0, getPinCount()),

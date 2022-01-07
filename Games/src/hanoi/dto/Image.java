@@ -7,15 +7,15 @@ import java.util.Arrays;
 
 public class Image implements IImage {
 
-    private char[][] image;
+    private final char[][] image;
 
     /**
      * Конструктор картинки
      * @param countFigure Количество фигурок(колец)
-     * @param countPin - колличество позиций для смены(штырей)
+     * @param countTower - колличество позиций для смены(штырей)
      */
-    public Image(int countFigure, int countPin) {
-        this.image = new char[countFigure][2 * countPin * countFigure + 2 * countPin - 1];
+    public Image(int countFigure, int countTower) {
+        this.image = new char[countFigure][2 * countTower * countFigure + 2 * countTower - 1];
     }
 
     /**
@@ -25,9 +25,8 @@ public class Image implements IImage {
     @Override
     public void iDrawIt(IDrawable figure) {
         char[][] figureToDraw = figure.getPicture();        // Изубражение фигуры
-        int startY = figure.getY();                         // Начальная позиция Х
-        int startX = figure.getX();  // Ночальная позиция Y
-
+        int startY = figure.getY();                         // Начальная позиция Y
+        int startX = figure.getX();                         // Ночальная позиция X
         for (int i = 0; i < figureToDraw.length; i++) {
             for (int j = 0; j < figureToDraw[i].length ; j++) {
                 this.image[startY + i][startX + j] = figureToDraw[i][j];
@@ -37,6 +36,8 @@ public class Image implements IImage {
 
     @Override
     public void printMyself() {
+        System.out.println("\n\n");
+
         for (char[] chars : image) {
             for (char aChar : chars) {
                 System.out.print(aChar);
@@ -45,6 +46,7 @@ public class Image implements IImage {
         }
     }
 
+    @Override
     public void clear() {
         for (char[] c : image) {
             Arrays.fill(c, ' ');

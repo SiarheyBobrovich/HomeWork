@@ -1,7 +1,8 @@
-package hanoi.dto;
+package hanoi.dto.figure;
 
 
 import hanoi.api.IImage;
+import hanoi.dto.figure.api.Figure;
 
 import java.util.Arrays;
 

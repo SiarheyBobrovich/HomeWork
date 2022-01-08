@@ -10,19 +10,30 @@ import java.util.List;
 
 public class Tower implements IDrawable {
 
-    private final int x;
-    private int y;
-    private int freePosition;
-    private Figure[] rings;
+    //В принципе класс абстрактный
 
-    private final char[][] picture = new char[][]{{ (char)9617}};
-    private final IImage image;
+    private final int x;                //Башня неподвижна по Х
+    private int y;                      //Y фигуры
+    private int freePosition;           //Свободное место на башне
+    private final Figure[] figures;     //Фигуры не башне
 
-    public Tower(int x, int height, IImage image) {
+    private char[][] picture;           //Изабражение башни
+    private final IImage image;         //изображение, где будем рисовать
+
+    public Tower(int x, int countFigures, IImage image) {
         this.x = x;
-        this.rings = new Figure[height];
+        this.figures = new Figure[countFigures];
         this.image = image;
-        freePosition = rings.length - 1;
+        freePosition = figures.length - 1;
+        setPicture(new char[][]{{ (char)9617}});
+    }
+
+    /**
+     * Смена изображения башни
+     * @param picture новое изображение(для наследников)
+     */
+    private void setPicture(char[][] picture) {
+        this.picture = picture;
     }
 
     /**
@@ -30,14 +41,14 @@ public class Tower implements IDrawable {
      * @return фигура
      */
     public Figure peekRing() {
-        if (freePosition == rings.length) {
+        if (freePosition == figures.length) {
             return null;
         }
 
-        Figure figure = rings[freePosition + 1];
+        Figure figure = figures[freePosition + 1];
 
         if (figure != null) {
-            rings[freePosition + 1] = null;
+            figures[freePosition + 1] = null;
             freePosition++;
             return figure;
         }
@@ -46,7 +57,7 @@ public class Tower implements IDrawable {
     }
 
     public Figure getFromTop() {
-        return rings[freePosition + 1];
+        return figures[freePosition + 1];
     }
 
     /**
@@ -57,7 +68,7 @@ public class Tower implements IDrawable {
         figure.setX(this.x);
         figure.setY(freePosition);
 
-        rings[freePosition] = figure;
+        figures[freePosition] = figure;
         freePosition--;
     }
 
@@ -67,7 +78,7 @@ public class Tower implements IDrawable {
      * @return true - если башня пустая или предыдущая фигура большего размера иначе false
      */
     public boolean isLess(Figure figure) {
-        return freePosition == 0 || figure.getSize() < rings[freePosition + 1].getSize();
+        return freePosition == 0 || figure.getSize() < figures[freePosition + 1].getSize();
     }
 
     /**
@@ -75,7 +86,7 @@ public class Tower implements IDrawable {
      * @return true - если башня пустая, иначе false
      */
     public boolean isEmpty() {
-        return freePosition == rings.length - 1;
+        return freePosition == figures.length - 1;
     }
 
     /**
@@ -92,7 +103,7 @@ public class Tower implements IDrawable {
     @Override
     public void draw() {
 
-        for (Figure figure : rings) {
+        for (Figure figure : figures) {
 
             if (figure != null) {
                 figure.draw();
@@ -125,6 +136,13 @@ public class Tower implements IDrawable {
         return 1;
     }
 
+    /**
+     * Метод создания всех башен
+     * @param count - Количество башен
+     * @param countFigure - высота башни(количество фигур помещаемых на башню)
+     * @param image - где будем рисовать башню
+     * @return заполненный список башен со стартовой позицией фигур
+     */
     public static List<Tower> getTowers(int count, int countFigure, IImage image){
         List<Tower> result = new ArrayList<>(count);
         int x = countFigure;
@@ -137,6 +155,7 @@ public class Tower implements IDrawable {
                     tower.popRing(new Ring(x, j, j + 1, image));
                 }
             }
+
             result.add(tower);
             x = ++x + countFigure * 2 + 1;
         }

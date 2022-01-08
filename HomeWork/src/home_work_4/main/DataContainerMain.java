@@ -1,10 +1,10 @@
 package home_work_4.main;
 
-import home_work_4.service.ContainerService1;
+import home_work_4.service.ContainerService;
 
-public class DataContainerMain1 {
+public class DataContainerMain {
     public static void main(String[] args) {
-        ContainerService1<Integer> service = new ContainerService1<>();
+        ContainerService<Integer> service = new ContainerService<>();
 
         //метод int add(T item)
         System.out.println("Index возвращаемого объекта 1 = " + service.run(new Integer[]{1, 2, 3, null, null, null}, Integer.valueOf(777)));

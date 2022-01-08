@@ -6,7 +6,7 @@ import java.util.Objects;
 
 //Класс сделан для пробы перегрузки метода run() и Generic
 
-public class ContainerService1<T extends Integer> {
+public class ContainerService<T extends Integer> {
 
     public int run(T[] data, T added) {
         DataContainer<T> dataContainer = new DataContainer<>(data);

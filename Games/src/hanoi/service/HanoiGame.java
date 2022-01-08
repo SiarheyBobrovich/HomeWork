@@ -15,16 +15,20 @@ public class HanoiGame {
     private int count;
     private final List<Tower> towers;
     private List<Character[]> save;
-    private IImage image;
+    private final IImage image;
     private final IUser user;
     private boolean isEnd = false;
 
-    public HanoiGame(int towerCount, int figureCount, int userMode) {
+    public HanoiGame(int towerCount, int figureCount, int userMode, IImage image) {
         this.user = new UserFactory().get(userMode, towerCount);
-        this.towers = getTowers(towerCount, figureCount);
+        this.towers = Tower.getTowers(towerCount, figureCount, image);
         this.save = new ArrayList<>();
+        this.image = image;
     }
 
+    /**
+     * Запуск игры
+     */
     public void run() {
         draw();
 
@@ -43,6 +47,9 @@ public class HanoiGame {
         System.out.println("Поздравляю ваша игра заняла: " + count + " ходов");
     }
 
+    /**
+     * Отрисовка поля
+     */
     private void draw() {
         image.clear();
 
@@ -53,10 +60,16 @@ public class HanoiGame {
         image.printMyself();
     }
 
+    /**
+     * Запись хода
+     */
     private void setCount() {
         count++;
     }
 
+    /**
+     * Запуск раунда(хода)
+     */
     private void round() {
         int[] fromTo = user.getNextMove();
         boolean isEmptyFrom = towers.get(fromTo[0]).isEmpty();
@@ -65,26 +78,7 @@ public class HanoiGame {
             Figure moveFigure = towers.get(fromTo[0]).peekRing();
             towers.get(fromTo[1]).popRing(moveFigure);
         }
+
         setCount();
-    }
-
-    private List<Tower> getTowers(int count, int countFigure){
-        List<Tower> result = new ArrayList<>(count);
-        this.image = new Image(countFigure, count);
-        int x = countFigure;
-
-        for (int i = 0; i < count; i++) {
-            Tower tower = new Tower(x, countFigure, image);
-
-            if (i == 0) {
-                for (int j = countFigure - 1; j >= 0; j--) {
-                    tower.popRing(new Ring(x, j, j + 1, image));
-                }
-            }
-            result.add(tower);
-            x = ++x + countFigure * 2 + 1;
-        }
-
-        return result;
     }
 }

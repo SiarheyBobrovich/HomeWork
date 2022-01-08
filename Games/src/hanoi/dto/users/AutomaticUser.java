@@ -7,8 +7,8 @@ public class AutomaticUser extends PlayerUser {
 
     ThreadLocalRandom rnd = ThreadLocalRandom.current();
 
-    public AutomaticUser(int pinCount) {
-        super(pinCount);
+    public AutomaticUser(int towerCount) {
+        super(towerCount);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class AutomaticUser extends PlayerUser {
         }
 
         return new int[] {
-                rnd.nextInt(0, getPinCount()),
-                rnd.nextInt(0, getPinCount())};
+                rnd.nextInt(0, getTowerCount()),
+                rnd.nextInt(0, getTowerCount())};
     }
 }

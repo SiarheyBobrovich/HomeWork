@@ -10,7 +10,7 @@ public abstract class PlayerUser implements IUser {
         this.pinCount = pinCount;
     }
 
-    protected int getPinCount() {
+    protected int getTowerCount() {
         return pinCount;
     }
 

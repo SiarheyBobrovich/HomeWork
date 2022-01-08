@@ -1,22 +1,20 @@
 package hanoi.dto.users;
 
 import hanoi.dto.users.api.PlayerUser;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class BotUser extends PlayerUser {
 
-    private List<Integer> steps = new ArrayList<>();
     int index;
-    int from = 0;
-    int to = 1;
-    int buffer = 2;
     int figureCount = 20;
+
+    private List<Integer> steps = new ArrayList<>();
+
 
     public BotUser(int towerCount) {
         super(towerCount);
-        recurse(figureCount, from, to, buffer);
+        recurse(figureCount, 0, 1, 2);
     }
 
     private void recurse(int figureCount, int from, int to, int buffer) {
@@ -26,7 +24,6 @@ public class BotUser extends PlayerUser {
 
         recurse(figureCount - 1, from, buffer, to);
 
-
         steps.add(from);
         steps.add(to);
 
@@ -35,12 +32,14 @@ public class BotUser extends PlayerUser {
 
     @Override
     public int[] getNextMove() {
+        System.out.printf("Хожу с: %d на: %d%n", steps.get(index + 1), steps.get(index + 1)+ 1);
 
         try {
-            Thread.sleep(200);
+            Thread.sleep(300);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         return new int[]{steps.get(index++), steps.get(index++)};
     }
 }

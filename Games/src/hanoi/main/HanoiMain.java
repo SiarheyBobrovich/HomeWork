@@ -1,5 +1,6 @@
 package hanoi.main;
 
+import hanoi.dto.Image;
 import hanoi.service.HanoiGame;
 
 import java.util.Scanner;
@@ -9,9 +10,12 @@ public class HanoiMain {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
 
-        HanoiGame game = new HanoiGame(getTowerCount(console),
-                                    getFigureCount(console),
-                                    getUserMode(console));
+        int countTower = getTowerCount(console);
+        int countFigure = getFigureCount(console);
+
+        HanoiGame game = new HanoiGame(countTower,
+                                    countFigure,
+                                    getUserMode(console), new Image(countFigure, countTower));
         game.run();
     }
 
@@ -20,8 +24,10 @@ public class HanoiMain {
                 "1) Игрок\n" +
                 "2) Автоматический(имитация)\n" +
                 "3) Искуственный интелект. Внимание! Работает только на 3 башни.");
+
         while (true) {
             int user = console.nextInt();
+
             if (user > 0 && user < 4) {
                 return user;
             }

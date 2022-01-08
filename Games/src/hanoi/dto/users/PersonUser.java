@@ -1,15 +1,14 @@
 package hanoi.dto.users;
 
 import hanoi.dto.users.api.PlayerUser;
-
 import java.util.Scanner;
 
 public class PersonUser extends PlayerUser {
 
     Scanner console = new Scanner(System.in);
 
-    public PersonUser(int pinCount) {
-        super(pinCount);
+    public PersonUser(int towerCount) {
+        super(towerCount);
     }
 
     @Override
@@ -29,11 +28,12 @@ public class PersonUser extends PlayerUser {
 
     private int getNumberFromUser() {
         int result;
-        int pinCount = getPinCount();
+        int towerCount = getTowerCount();
+
         while (true) {
             result = console.nextInt();
 
-            if (result > 0 && result <= pinCount) {
+            if (result > 0 && result <= towerCount) {
                 return result;
             }
         }

@@ -1,9 +1,8 @@
 package hanoi.service;
 
-import hanoi.api.IImage;
+import hanoi.api.ICanvas;
 import hanoi.dto.*;
 import hanoi.dto.figure.api.Figure;
-import hanoi.dto.figure.Ring;
 import hanoi.dto.users.UserFactory;
 import hanoi.dto.users.api.IUser;
 
@@ -15,11 +14,11 @@ public class HanoiGame {
     private int count;
     private final List<Tower> towers;
     private List<Character[]> save;
-    private final IImage image;
+    private final ICanvas image;
     private final IUser user;
     private boolean isEnd = false;
 
-    public HanoiGame(int towerCount, int figureCount, int userMode, IImage image) {
+    public HanoiGame(int towerCount, int figureCount, int userMode, ICanvas image) {
         this.user = new UserFactory().get(userMode, towerCount);
         this.towers = Tower.getTowers(towerCount, figureCount, image);
         this.save = new ArrayList<>();

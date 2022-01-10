@@ -1,6 +1,6 @@
 package hanoi.main;
 
-import hanoi.dto.Image;
+import hanoi.dto.Canvas;
 import hanoi.service.HanoiGame;
 
 import java.util.Scanner;
@@ -15,7 +15,7 @@ public class HanoiMain {
 
         HanoiGame game = new HanoiGame(countTower,
                                     countFigure,
-                                    getUserMode(console), new Image(countFigure, countTower));
+                                    getUserMode(console), new Canvas(countFigure, countTower));
         game.run();
     }
 

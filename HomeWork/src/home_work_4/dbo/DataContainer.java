@@ -186,7 +186,7 @@ public class DataContainer<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator() {
+        return new Iterator<>() {
 
             private int index = 0;
             private boolean isException = true;

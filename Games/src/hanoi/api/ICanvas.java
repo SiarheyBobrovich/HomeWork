@@ -1,11 +1,11 @@
 package hanoi.api;
 
-public interface IImage {
+public interface ICanvas {
     /**
      * Рисует объект на себя
-     * @param figure - объект
+     * @param baseObject - объект
      */
-    void iDrawIt(IDrawable figure);
+    void draw(IDrawable baseObject);
 
 
     /**

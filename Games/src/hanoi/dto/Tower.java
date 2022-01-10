@@ -1,39 +1,26 @@
 package hanoi.dto;
 
-import hanoi.api.IDrawable;
-import hanoi.api.IImage;
+import hanoi.api.BaseObject;
+import hanoi.api.ICanvas;
 import hanoi.dto.figure.Ring;
 import hanoi.dto.figure.api.Figure;
+import hanoi.utils.Container;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tower implements IDrawable {
+public class Tower extends BaseObject {
 
     //В принципе класс абстрактный
-
+    private int y;                      //У каждой фигуры есть своя координата Y
     private final int x;                //Башня неподвижна по Х
-    private int y;                      //Y фигуры
-    private int freePosition;           //Свободное место на башне
-    private final Figure[] figures;     //Фигуры не башне
+    private final Container<Figure> figures;     //Фигуры не башне
 
-    private char[][] picture;           //Изабражение башни
-    private final IImage image;         //изображение, где будем рисовать
-
-    public Tower(int x, int countFigures, IImage image) {
+    public Tower(int x, int countFigures, ICanvas image) {
+        super(image);
         this.x = x;
-        this.figures = new Figure[countFigures];
-        this.image = image;
-        freePosition = figures.length - 1;
+        this.figures = new Container<>(new Figure[1], countFigures);
         setPicture(new char[][]{{ (char)9617}});
-    }
-
-    /**
-     * Смена изображения башни
-     * @param picture новое изображение(для наследников)
-     */
-    private void setPicture(char[][] picture) {
-        this.picture = picture;
     }
 
     /**
@@ -41,23 +28,11 @@ public class Tower implements IDrawable {
      * @return фигура
      */
     public Figure peekRing() {
-        if (freePosition == figures.length) {
-            return null;
-        }
-
-        Figure figure = figures[freePosition + 1];
-
-        if (figure != null) {
-            figures[freePosition + 1] = null;
-            freePosition++;
-            return figure;
-        }
-
-        return null;
+        return figures.peekRing();
     }
 
     public Figure getFromTop() {
-        return figures[freePosition + 1];
+        return figures.getFromTop();
     }
 
     /**
@@ -66,10 +41,8 @@ public class Tower implements IDrawable {
      */
     public void popRing(Figure figure) {
         figure.setX(this.x);
-        figure.setY(freePosition);
-
-        figures[freePosition] = figure;
-        freePosition--;
+        figure.setY(figures.getFreePosition());;
+        figures.pop(figure);
     }
 
     /**
@@ -78,7 +51,7 @@ public class Tower implements IDrawable {
      * @return true - если башня пустая или предыдущая фигура большего размера иначе false
      */
     public boolean isLess(Figure figure) {
-        return freePosition == 0 || figure.getSize() < figures[freePosition + 1].getSize();
+        return figure.getSize() < figures.getFromTop().getSize();
     }
 
     /**
@@ -86,7 +59,7 @@ public class Tower implements IDrawable {
      * @return true - если башня пустая, иначе false
      */
     public boolean isEmpty() {
-        return freePosition == figures.length - 1;
+        return figures.isEmpty();
     }
 
     /**
@@ -94,7 +67,7 @@ public class Tower implements IDrawable {
      * @return true - если башня полная, иначе false
      */
     public boolean isFull() {
-        return this.freePosition == -1;
+        return figures.isFull();
     }
 
     /**
@@ -103,22 +76,17 @@ public class Tower implements IDrawable {
     @Override
     public void draw() {
 
-        for (Figure figure : figures) {
+        for (Figure figure : figures){
 
             if (figure != null) {
                 figure.draw();
             }else {
-                image.iDrawIt(this);
+                super.draw();
             }
             this.y++;
         }
 
         this.y = 0;
-    }
-
-    @Override
-    public char[][] getPicture() {
-        return this.picture;
     }
 
     @Override
@@ -137,13 +105,13 @@ public class Tower implements IDrawable {
     }
 
     /**
-     * Метод создания всех башен
+     * Метод создание всех башен
      * @param count - Количество башен
      * @param countFigure - высота башни(количество фигур помещаемых на башню)
      * @param image - где будем рисовать башню
      * @return заполненный список башен со стартовой позицией фигур
      */
-    public static List<Tower> getTowers(int count, int countFigure, IImage image){
+    public static List<Tower> getTowers(int count, int countFigure, ICanvas image){
         List<Tower> result = new ArrayList<>(count);
         int x = countFigure;
 

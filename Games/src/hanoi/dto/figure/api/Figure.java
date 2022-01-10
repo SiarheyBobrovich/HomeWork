@@ -1,26 +1,19 @@
 package hanoi.dto.figure.api;
 
-import hanoi.api.IDrawable;
-import hanoi.api.IImage;
+import hanoi.api.BaseObject;
+import hanoi.api.ICanvas;
 
-public abstract class Figure implements IDrawable {
+public abstract class Figure extends BaseObject {
 
-    private int x;
-    private int y;
-    private final int size;
+    private int x;          //Фигура находится на башне X
+    private int y;          //На позиции Y
+    private final int size; //У каждой фигуры есть свой размер
 
-    private final IImage image;
-    private char[][] picture;
-
-    public Figure(int x, int y, int size, IImage image) {
-        this.x = x; //центр фигуры
-        this.y = y;
-        this.size = size;
-        this.image = image;
-    }
-
-    public IImage getImage() {
-        return image;
+    protected Figure(int x, int y, int size, ICanvas image) {
+        super(image);
+        this.x = x;         //центр фигуры
+        this.y = y;         //Позиция на башне
+        this.size = size;   //Размер
     }
 
     public void setX(int x) {
@@ -29,16 +22,6 @@ public abstract class Figure implements IDrawable {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-
-    public void setPicture(char[][] picture) {
-        this.picture = picture;
-    }
-
-    @Override
-    public char[][] getPicture() {
-        return picture;
     }
 
     @Override

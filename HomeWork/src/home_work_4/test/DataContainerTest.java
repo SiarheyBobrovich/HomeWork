@@ -52,7 +52,7 @@ class DataContainerTest {
     void getItems() {
         Integer[] ints = new Integer[2];
         container = new DataContainer<>(ints);
-        Assertions.assertEquals(ints, container.getItems());
+        Assertions.assertArrayEquals(ints, container.getItems());
     }
 
     @Test

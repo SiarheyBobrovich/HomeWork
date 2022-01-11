@@ -11,15 +11,13 @@ import java.util.*;
 
 public class DataContainer<T> implements Iterable<T> {
     private T[] data;
-    private int size;
 
     public DataContainer(T[] data) {
         this.data = data;
-        this.size = data.length;
     }
 
     public int getSize() {
-        return size;
+        return data.length;
     }
 
     /**
@@ -39,10 +37,10 @@ public class DataContainer<T> implements Iterable<T> {
             }
         }
 
-        data = Arrays.copyOf(data, size + 1);
-        data[size] = item;
+        data = Arrays.copyOf(data, data.length + 1);
+        data[data.length - 1] = item;
 
-        return this.size++;
+        return this.data.length - 1;
     }
 
     /**
@@ -51,7 +49,7 @@ public class DataContainer<T> implements Iterable<T> {
      * @return объект
      */
     public T get(int index) {
-        if (index >= size || index < 0) {
+        if (index >= data.length || index < 0) {
             return null;
         }
 
@@ -63,7 +61,7 @@ public class DataContainer<T> implements Iterable<T> {
      * @return data
      */
     public T[] getItems() {
-        return this.data;
+        return Arrays.copyOf(data, data.length);
     }
 
     /**
@@ -72,17 +70,16 @@ public class DataContainer<T> implements Iterable<T> {
      * @return true - если элемент удалён, иначе false
      */
     public boolean delete(int index) {
-        if (index >= size || index < 0) {
+        if (index >= data.length || index < 0) {
             return false;
         }
 
-        T[] newContainer = Arrays.copyOf(data, size - 1);
+        T[] newContainer = Arrays.copyOf(data, data.length - 1);
 
-        if (size - (index + 1) >= 0) {
-            System.arraycopy(data, index + 1, newContainer, index, size - (index + 1));
+        if (data.length - (index + 1) >= 0) {
+            System.arraycopy(data, index + 1, newContainer, index, data.length - (index + 1));
         }
 
-        size--;
         data = newContainer;
 
         return true;
@@ -95,7 +92,7 @@ public class DataContainer<T> implements Iterable<T> {
      */
     public boolean deleteItem(T item) {
         int index = -1;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < data.length; i++) {
             if (Objects.equals(data[i], item)) {
                 index = i;
                 break;
@@ -115,7 +112,7 @@ public class DataContainer<T> implements Iterable<T> {
         do {
             sorted = true;
 
-            for (int i = 0; i < size - 1; i++) {
+            for (int i = 0; i < data.length - 1; i++) {
                 T o1 = data[i];
                 T o2 = data[i + 1];
 
@@ -139,9 +136,9 @@ public class DataContainer<T> implements Iterable<T> {
         do {
             sorted = true;
 
-            for (int i = 0; i < dataContainer.size - 1; i++) {
+            for (int i = 0; i < dataContainer.data.length - 1; i++) {
                 if (dataContainer.data[i].compareTo(dataContainer.data[i + 1]) > 0) {
-                    dataContainer.changePlaces(dataContainer.getItems(), i);
+                    dataContainer.changePlaces(dataContainer.data, i);
                     sorted = false;
                 }
             }
@@ -169,12 +166,12 @@ public class DataContainer<T> implements Iterable<T> {
     public String toString() {
         StringBuilder result = new StringBuilder();
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < data.length; i++) {
             T tmp = data[i];
 
             if (tmp != null) {
                 result.append(tmp);
-                if (i != size - 1) {
+                if (i != data.length - 1) {
                     result.append(", ");
                 }
             }
@@ -197,7 +194,7 @@ public class DataContainer<T> implements Iterable<T> {
              */
             @Override
             public boolean hasNext() {
-                return this.index < size;
+                return this.index < data.length;
             }
 
             /**
@@ -209,7 +206,7 @@ public class DataContainer<T> implements Iterable<T> {
             public T next() throws NoSuchElementException{
                 isException = false;
 
-                if (index >= size) {
+                if (index >= data.length) {
                     throw new NoSuchElementException();
                 }
 

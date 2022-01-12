@@ -1,4 +1,4 @@
-package hanoi.dto;
+package hanoi.dto.towers;
 
 import hanoi.api.BaseObject;
 import hanoi.api.ICanvas;
@@ -9,9 +9,10 @@ import hanoi.utils.Container;
 import java.util.ArrayList;
 import java.util.List;
 
+//Первый вариант(Рабочий но мне не понравился)
+
 public class Tower extends BaseObject {
 
-    //В принципе класс абстрактный
     private int y;                      //У каждой фигуры есть своя координата Y
     private final int x;                //Башня неподвижна по Х
     private final Container<Figure> figures;     //Фигуры не башне

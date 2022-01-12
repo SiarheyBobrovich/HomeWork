@@ -18,7 +18,7 @@ public abstract class BaseObject implements IDrawable{
         return picture;
     }
 
-    public void setPicture(char[][] picture) {
+    protected void setPicture(char[][] picture) {
         this.picture = picture;
     }
 

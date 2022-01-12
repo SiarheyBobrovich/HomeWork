@@ -1,7 +1,7 @@
 package hanoi.main;
 
 import hanoi.dto.Canvas;
-import hanoi.service.HanoiGame;
+import hanoi.service.HanoiGameService;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class HanoiMain {
         int countTower = getTowerCount(console);
         int countFigure = getFigureCount(console);
 
-        HanoiGame game = new HanoiGame(countTower,
+        HanoiGameService game = new HanoiGameService(countTower,
                                     countFigure,
                                     getUserMode(console), new Canvas(countFigure, countTower));
         game.run();

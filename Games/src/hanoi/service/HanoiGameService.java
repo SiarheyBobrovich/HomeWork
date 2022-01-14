@@ -17,7 +17,6 @@ public class HanoiGameService {
     private List<Character[]> save;
     private final ICanvas image;
     private final IUser user;
-    private boolean isEnd = false;
 
     public HanoiGameService(int towerCount, int figureCount, int userMode, ICanvas image) {
         this.user = new UserFactory().get(userMode, towerCount, figureCount);
@@ -30,21 +29,21 @@ public class HanoiGameService {
      * Запуск игры
      */
     public void run() {
-        draw();
-
-        while (!isEnd) {
-            round();
+        do {
             draw();
 
-            for (int i = 1; i < towers.size(); i++) {
-                isEnd = towers.get(i).isFull();
-                if (isEnd) {
-                    break;
-                }
-            }
-        }
+        }while (round() && !isEndGame());
 
         System.out.println("Поздравляю ваша игра заняла: " + count + " ходов");
+    }
+
+    private boolean isEndGame() {
+        for (int i = 1; i < towers.size(); i++) {
+            if (towers.get(i).isFull()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -70,14 +69,23 @@ public class HanoiGameService {
     /**
      * Запуск раунда(хода)
      */
-    private void round() {
+    private boolean round() {
         int[] fromTo = user.getNextMove();
 
-        if (towers.get(fromTo[0]).test(towers.get(fromTo[1]).watchFigure())){
-            Figure moveFigure = towers.get(fromTo[0]).getFigure();
-            towers.get(fromTo[1]).add(moveFigure);
+        int from = fromTo[0];
+        int to = fromTo[1];
+
+        if (from == -1 || to == -1) {
+            return false;
+        }
+
+        if (towers.get(from).test(towers.get(to).watchFigure())){
+            Figure moveFigure = towers.get(from).getFigure();
+            towers.get(to).add(moveFigure);
         }
 
         setCount();
+
+        return true;
     }
 }

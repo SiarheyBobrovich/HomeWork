@@ -1,6 +1,7 @@
 package hanoi.dto.users;
 
 import hanoi.dto.users.api.PlayerUser;
+
 import java.util.Scanner;
 
 public class PersonUser extends PlayerUser {
@@ -13,19 +14,37 @@ public class PersonUser extends PlayerUser {
 
     @Override
     public int[] getNextMove() {
-        return new int[] {getFromMove() - 1, getToMove() - 1};
+        int from = getFromMove() - 1;
+
+        if (from < 0) {
+            return new int[]{from, 0};
+        }else {
+            return new int[] {from, getToMove() - 1};
+        }
     }
 
+    /**
+     * Запрос пользователя откуда снимать фигуру
+     * @return номер башни или 0 для выхода
+     */
     private int getFromMove() {
-        System.out.print("Введите башню откуда снимаем: ");
+        System.out.print("Введите башню откуда снимаем или 0 для выхода из игры: ");
         return getNumberFromUser();
     }
 
+    /**
+     * Запрос пользователя куда вешать фигуру
+     * @return номер башни или 0 для выхода
+     */
     private int getToMove() {
-        System.out.print("Введите башню на которую вешаем: ");
+        System.out.print("Введите башню на которую вешаем или 0 для выхода из игры: ");
         return getNumberFromUser();
     }
 
+    /**
+     * Ввод значения пользователем
+     * @return значение
+     */
     private int getNumberFromUser() {
         int result;
         int towerCount = getTowerCount();
@@ -33,10 +52,9 @@ public class PersonUser extends PlayerUser {
         while (true) {
             result = console.nextInt();
 
-            if (result > 0 && result <= towerCount) {
+            if (result >= 0 && result <= towerCount) {
                 return result;
             }
         }
     }
-
 }

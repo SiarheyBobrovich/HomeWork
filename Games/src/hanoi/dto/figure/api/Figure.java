@@ -3,7 +3,9 @@ package hanoi.dto.figure.api;
 import hanoi.api.BaseObject;
 import hanoi.api.ICanvas;
 
-public abstract class Figure extends BaseObject {
+import java.util.function.Predicate;
+
+public abstract class Figure extends BaseObject implements Predicate<Figure> {
 
     private int x;          //Фигура находится на башне X
     private int y;          //На позиции Y
@@ -25,11 +27,6 @@ public abstract class Figure extends BaseObject {
     }
 
     @Override
-    public int getSize() {
-        return size;
-    }
-
-    @Override
     public int getY() {
         return y;
     }
@@ -37,5 +34,10 @@ public abstract class Figure extends BaseObject {
     @Override
     public int getX() {
         return x - size;
+    }
+
+    @Override
+    public boolean test(Figure figure) {
+        return this.size < figure.size;
     }
 }

@@ -47,15 +47,6 @@ public class Tower extends BaseObject {
     }
 
     /**
-     * Проверяет можно ли сюда положить следующую фигуру
-     * @param figure проверяемая фигура
-     * @return true - если башня пустая или предыдущая фигура большего размера иначе false
-     */
-    public boolean isLess(Figure figure) {
-        return figure.getSize() < figures.getFromTop().getSize();
-    }
-
-    /**
      * Проверяет пустая ли башня
      * @return true - если башня пустая, иначе false
      */
@@ -98,11 +89,6 @@ public class Tower extends BaseObject {
     @Override
     public int getY() {
         return this.y;
-    }
-
-    @Override
-    public int getSize() {
-        return 1;
     }
 
     /**

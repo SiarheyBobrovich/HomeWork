@@ -1,6 +1,6 @@
 package hanoi.api;
 
-public abstract class BaseObject implements IDrawable{
+public abstract class BaseObject implements IDrawable {
 
     private final ICanvas image;
     private char[][] picture;

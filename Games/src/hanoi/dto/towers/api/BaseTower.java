@@ -1,6 +1,5 @@
 package hanoi.dto.towers.api;
 
-
 import hanoi.api.BaseObject;
 import hanoi.api.ICanvas;
 import hanoi.dto.figure.api.Figure;
@@ -14,12 +13,16 @@ public abstract class BaseTower<T extends Figure> extends BaseObject implements 
     private final int x;
     private int y;
     private final int countFigures;
-    private List<T> figures = new ArrayList<>();
+    private final List<T> figures = new ArrayList<>();
 
     protected BaseTower(ICanvas image, int x, int countFigures) {
         super(image);
         this.x = x;
         this.countFigures = countFigures;
+    }
+
+    public boolean isFull() {
+        return countFigures == figures.size();
     }
 
     public void add(T figure) {
@@ -63,6 +66,6 @@ public abstract class BaseTower<T extends Figure> extends BaseObject implements 
 
     @Override
     public boolean test(T t) {
-        return !figures.isEmpty() && (t == null || watchFigure().getSize() < t.getSize());
+        return !figures.isEmpty() && (t == null || watchFigure().test(t));
     }
 }

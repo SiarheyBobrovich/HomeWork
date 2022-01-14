@@ -20,13 +20,13 @@ public class Canvas implements ICanvas {
 
     /**
      * Метод отрисовки объекта
-     * @param BaseObject - фигура
+     * @param drawable - фигура
      */
     @Override
-    public void draw(IDrawable BaseObject) {
-        char[][] figureToDraw = BaseObject.getPicture();        // Изубражение фигуры
-        int startY = BaseObject.getY();                         // Начальная позиция Y
-        int startX = BaseObject.getX();                         // Ночальная позиция X
+    public void draw(IDrawable drawable) {
+        char[][] figureToDraw = drawable.getPicture();        // Изубражение фигуры
+        int startY = drawable.getY();                         // Начальная позиция Y
+        int startX = drawable.getX();                         // Ночальная позиция X
         for (int i = 0; i < figureToDraw.length; i++) {
             for (int j = 0; j < figureToDraw[i].length ; j++) {
                 this.canvas[startY + i][startX + j] = figureToDraw[i][j];

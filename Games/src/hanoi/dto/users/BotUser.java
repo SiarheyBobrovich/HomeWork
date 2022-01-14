@@ -6,15 +6,14 @@ import java.util.List;
 
 public class BotUser extends PlayerUser {
 
-    int index;
-    int figureCount = 20;
+    private int index;
+    private final int figureCount;
+    private final List<Integer> steps = new ArrayList<>();
 
-    private List<Integer> steps = new ArrayList<>();
-
-
-    public BotUser(int towerCount) {
+    public BotUser(int towerCount, int figureCount) {
         super(towerCount);
-        recurse(figureCount, 0, 1, 2);
+        this.figureCount = figureCount;
+        recurse(figureCount, 0, getTowerCount() - 2, getTowerCount() - 1);
     }
 
     private void recurse(int figureCount, int from, int to, int buffer) {
@@ -32,7 +31,7 @@ public class BotUser extends PlayerUser {
 
     @Override
     public int[] getNextMove() {
-        System.out.printf("Хожу с: %d на: %d%n", steps.get(index + 1), steps.get(index + 1)+ 1);
+        System.out.printf("Хожу с: %d на: %d%n", steps.get(index) + 1, steps.get(index + 1)+ 1);
 
         try {
             Thread.sleep(300);

@@ -20,7 +20,7 @@ public class HanoiGameService {
     private boolean isEnd = false;
 
     public HanoiGameService(int towerCount, int figureCount, int userMode, ICanvas image) {
-        this.user = new UserFactory().get(userMode, towerCount);
+        this.user = new UserFactory().get(userMode, towerCount, figureCount);
         this.towers = Tower2.getTowers(towerCount, figureCount, image);
         this.save = new ArrayList<>();
         this.image = image;
@@ -37,7 +37,7 @@ public class HanoiGameService {
             draw();
 
             for (int i = 1; i < towers.size(); i++) {
-                isEnd = towers.get(i).getSize() == 5;
+                isEnd = towers.get(i).isFull();
                 if (isEnd) {
                     break;
                 }

@@ -21,12 +21,6 @@ public interface IDrawable {
     int getY();
 
     /**
-     * Метод для запроса координаты размера объекта
-     * @return размер
-     */
-    int getSize();
-
-    /**
      * Команда нарисовать себя
      */
     void draw();

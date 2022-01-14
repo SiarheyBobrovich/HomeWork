@@ -15,11 +15,6 @@ public class Tower2<T extends Figure> extends BaseTower<T> {
         setPicture(new char[][] {{'|'}});
     }
 
-    @Override
-    public int getSize() {
-        return 1;
-    }
-
     public static List<BaseTower<Figure>> getTowers(int count, int countFigure, ICanvas image){
         List<BaseTower<Figure>> result = new ArrayList<>(count);
         int x = countFigure;

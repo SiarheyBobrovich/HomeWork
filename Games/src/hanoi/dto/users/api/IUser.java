@@ -1,6 +1,8 @@
 package hanoi.dto.users.api;
 
-public interface IUser {
+import java.io.Serializable;
+
+public interface IUser extends Serializable {
 
     /**
      * Запрос у пользователя откуда ходим

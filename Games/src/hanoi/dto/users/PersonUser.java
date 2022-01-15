@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class PersonUser extends PlayerUser {
 
-    Scanner console = new Scanner(System.in);
+    private transient Scanner console;
 
     public PersonUser(int towerCount) {
         super(towerCount);
@@ -14,6 +14,9 @@ public class PersonUser extends PlayerUser {
 
     @Override
     public int[] getNextMove() {
+        if (console == null) {
+            console = new Scanner(System.in);
+        }
         int from = getFromMove() - 1;
 
         if (from < 0) {

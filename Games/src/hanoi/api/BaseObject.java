@@ -1,6 +1,8 @@
 package hanoi.api;
 
-public abstract class BaseObject implements IDrawable {
+import java.io.Serializable;
+
+public abstract class BaseObject implements IDrawable, Serializable {
 
     private final ICanvas image;
     private char[][] picture;

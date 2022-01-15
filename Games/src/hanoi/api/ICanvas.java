@@ -1,6 +1,8 @@
 package hanoi.api;
 
-public interface ICanvas {
+import java.io.Serializable;
+
+public interface ICanvas extends Serializable {
     /**
      * Рисует объект на себя
      * @param baseObject - объект

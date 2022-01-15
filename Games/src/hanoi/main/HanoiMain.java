@@ -1,22 +1,79 @@
 package hanoi.main;
 
+import hanoi.api.ICanvas;
 import hanoi.dto.Canvas;
+import hanoi.dto.figure.api.Figure;
+import hanoi.dto.towers.api.BaseTower;
+import hanoi.dto.users.api.IUser;
 import hanoi.service.HanoiGameService;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class HanoiMain {
 
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
+        HanoiGameService game = null;
 
-        int countTower = getTowerCount(console);
-        int countFigure = getFigureCount(console);
+        int userMode = getUserMode(console);
 
-        HanoiGameService game = new HanoiGameService(countTower,
-                                    countFigure,
-                                    getUserMode(console), new Canvas(countFigure, countTower));
+        if (userMode == 1) {
+            System.out.print("Хотите загрузить игру(да/любой другой ответ): ");
+            String answer = "";
+
+            while (answer.equals("")) {
+                answer = console.nextLine();
+            }
+
+            if (answer.equalsIgnoreCase("да")) {
+                game = load(console);
+            }
+        }
+
+        if (game == null) {
+            int countTower = getTowerCount(console);
+            int countFigure = getFigureCount(console);
+
+            game = new HanoiGameService(countTower,
+                    countFigure,
+                    userMode,
+                    new Canvas(countFigure, countTower));
+        }
+
         game.run();
+    }
+
+    /**
+     * Метод загружает игру из файла
+     * @param console с чего считываем
+     * @return загруженая игра
+     */
+    private static HanoiGameService load(Scanner console) {
+        String fileName;
+        do {
+            System.out.print("Введите имя сохранённой игры без расширения: ");
+            fileName = console.nextLine();
+
+            if (fileName.equals("new Game")) {
+                return null;
+            }
+
+            fileName += ".hanoiGame";
+
+        } while (Files.notExists(Path.of(fileName)));
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
+            return (HanoiGameService) in.readObject();
+
+        }catch (IOException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     private static int getUserMode(Scanner console) {

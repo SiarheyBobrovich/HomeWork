@@ -1,13 +1,13 @@
 package home_work_5.main;
 
-import home_work_5.service.WarAndMarService;
+import home_work_5.service.SearchWithWordFileReaderService;
 
 import java.io.FileNotFoundException;
 
-public class WarAndMarMain {
+public class SearchWithWordFileReaderMain {
     public static void main(String[] args) {
-        String fileName = "Война и мир_книга_тест2.txt";
-        WarAndMarService service = new WarAndMarService();
+        String fileName = "Война и мир_книга.txt";
+        SearchWithWordFileReaderService service = new SearchWithWordFileReaderService();
 
         try {
             service.run(fileName);

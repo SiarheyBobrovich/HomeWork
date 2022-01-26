@@ -11,6 +11,10 @@ public class RegExSearch implements ISearchEngine {
 
     private final boolean ignoreCase;
 
+    public boolean isIgnoreCase() {
+        return ignoreCase;
+    }
+
     public RegExSearch() {
         this.ignoreCase = false;
     }
@@ -22,10 +26,14 @@ public class RegExSearch implements ISearchEngine {
     @Override
     public long search(String text, String word) {
         long count = 0;
+        String p = "(^|\\G|[\\p{Space}\"(\\p{P}&&[^-]])-?" + word + "([\\p{P}\\s&&[^-]]|$)";
 
-        Pattern wordPattern = !ignoreCase ?
-                Pattern.compile(word) : Pattern.compile(word, Pattern.CASE_INSENSITIVE);
-        Matcher wordMatcher = wordPattern.matcher(text);
+        Pattern pattern = ignoreCase ?
+                Pattern.compile(p, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE) :
+                Pattern.compile(p);
+
+
+        Matcher wordMatcher = pattern.matcher(text);
 
         while (wordMatcher.find()) {
             count++;

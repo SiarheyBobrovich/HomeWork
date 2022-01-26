@@ -10,8 +10,25 @@ public class EasySearch implements ISearchEngine {
         long count = 0;
         int index = -1;
 
-        while ((index = text.indexOf(word, index + 1)) > 0) {
-            if (word.equals(text.substring(index, index + word.length()))) {
+        while ((index = text.indexOf(word, index + 1)) >= 0) {
+
+            boolean isFind = true;
+
+            if (index > 0) {
+                char frontChar = text.charAt(index - 1);
+                if (Character.isAlphabetic(frontChar) || Character.isDigit(frontChar) || frontChar == '-') {
+                    isFind = false;
+                }
+            }
+
+            if (index + word.length() < text.length()) {
+                char nextChar = text.charAt(index + word.length());
+                if (isFind && Character.isAlphabetic(nextChar) || Character.isDigit(nextChar) || nextChar == '-') {
+                    isFind = false;
+                }
+            }
+
+            if (isFind) {
                 count++;
             }
         }

@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class WarAndMarService {
+public class SearchWithoutAnythingService {
 
     public void run(String fileName) throws FileNotFoundException {
         BufferedReader reader = new BufferedReader(new FileReader(fileName));

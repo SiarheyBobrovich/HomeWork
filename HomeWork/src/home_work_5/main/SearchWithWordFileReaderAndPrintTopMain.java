@@ -1,15 +1,16 @@
 package home_work_5.main;
 
-import home_work_5.service.WarAndMarService2_2;
+import home_work_5.service.SearchWithWordFileReaderAndPrintTopService;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class WarAndMarMain2_2 {
+public class SearchWithWordFileReaderAndPrintTopMain {
     public static void main(String[] args) {
         String fileName = "Война и мир_книга.txt";
-        WarAndMarService2_2 service = new WarAndMarService2_2();
+        SearchWithWordFileReaderAndPrintTopService service = new SearchWithWordFileReaderAndPrintTopService();
 
+        System.out.println("Введите ТОП слов для вывода");
         int printWords = new Scanner(System.in).nextInt();
 
         try {

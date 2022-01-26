@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class WarAndMarService2_2 {
+public class SearchWithWordFileReaderAndPrintTopService {
 
     public void run(String fileName, int countWords) throws FileNotFoundException {
         WordFileReader reader = new WordFileReader(new FileReader(fileName));

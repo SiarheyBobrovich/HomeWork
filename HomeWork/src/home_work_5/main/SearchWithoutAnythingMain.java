@@ -1,13 +1,13 @@
 package home_work_5.main;
 
-import home_work_5.service.WarAndMarService2_1;
+import home_work_5.service.SearchWithoutAnythingService;
 
 import java.io.FileNotFoundException;
 
-public class WarAndMarMain2_1 {
+public class SearchWithoutAnythingMain {
     public static void main(String[] args) {
-        String fileName = "Война и мир_книга.txt";
-        WarAndMarService2_1 service = new WarAndMarService2_1();
+        String fileName = "Война и мир_книга_тест2.txt";
+        SearchWithoutAnythingService service = new SearchWithoutAnythingService();
 
         try {
             service.run(fileName);

@@ -26,7 +26,10 @@ public class RegExSearch implements ISearchEngine {
     @Override
     public long search(String text, String word) {
         long count = 0;
-        String p = "(^|\\G|[\\p{Space}\"(\\p{P}&&[^-]])-?" + word + "([\\p{P}\\s&&[^-]]|$)";
+        String beforeWord = "(\\G|^|[\\p{Space}[\"(\\p{P}]&&[^-]]-?)";
+        String afterWord = "([\\p{P}\\s&&[^-]]|$)";
+        //String p = "(^|\\G|[\\p{Space}\"(\\p{P}&&[^-]])-?" + word + "([\\p{P}\\s&&[^-]]|$)";
+        String p = beforeWord + "(" + word + ")" + afterWord;
 
         Pattern pattern = ignoreCase ?
                 Pattern.compile(p, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE) :

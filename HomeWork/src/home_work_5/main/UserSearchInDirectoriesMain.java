@@ -1,6 +1,5 @@
 package home_work_5.main;
 
-import home_work_5.bdo.ScannedFile;
 import home_work_5.service.UserSearchInDirectoriesService;
 
 import java.io.BufferedWriter;

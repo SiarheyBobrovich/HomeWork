@@ -1,6 +1,6 @@
 package home_work_5.test;
 
-import home_work_5.bdo.WordFileReader;
+import home_work_5.dto.WordFileReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

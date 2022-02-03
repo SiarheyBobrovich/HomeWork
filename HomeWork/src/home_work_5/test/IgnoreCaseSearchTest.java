@@ -1,12 +1,10 @@
 package home_work_5.test;
 
-import home_work_5.bdo.EasySearch;
-import home_work_5.bdo.IgnoreCaseSearch;
-import home_work_5.bdo.RegExSearch;
+import home_work_5.dto.EasySearch;
+import home_work_5.dto.IgnoreCaseSearch;
+import home_work_5.dto.RegExSearch;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class IgnoreCaseSearchTest {
 

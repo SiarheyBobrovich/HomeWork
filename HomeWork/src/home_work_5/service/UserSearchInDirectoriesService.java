@@ -2,7 +2,7 @@ package home_work_5.service;
 
 
 import home_work_5.api.ISearchEngine;
-import home_work_5.bdo.RegExSearch;
+import home_work_5.dto.RegExSearch;
 
 import java.io.File;
 import java.io.IOException;

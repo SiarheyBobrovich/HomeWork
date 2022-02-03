@@ -1,9 +1,9 @@
 package home_work_5.service;
 
 import home_work_5.api.ISearchEngine;
-import home_work_5.bdo.EasySearch;
-import home_work_5.bdo.IgnoreCaseSearch;
-import home_work_5.bdo.RegExSearch;
+import home_work_5.dto.EasySearch;
+import home_work_5.dto.IgnoreCaseSearch;
+import home_work_5.dto.RegExSearch;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,9 +1,9 @@
 package home_work_5.test;
 
 import home_work_5.api.ISearchEngine;
-import home_work_5.bdo.EasySearch;
-import home_work_5.bdo.RegExSearch;
-import home_work_5.bdo.SearchEnginePunctuationNormalizer;
+import home_work_5.dto.EasySearch;
+import home_work_5.dto.RegExSearch;
+import home_work_5.dto.SearchEnginePunctuationNormalizer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

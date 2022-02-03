@@ -1,6 +1,6 @@
 package home_work_5.service;
 
-import home_work_5.bdo.WordFileReader;
+import home_work_5.dto.WordFileReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

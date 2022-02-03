@@ -1,6 +1,6 @@
 package home_work_5.main;
 
-import home_work_5.bdo.FilesDirectory;
+import home_work_5.dto.FilesDirectory;
 import home_work_5.service.UserSearchInDirectoryService;
 
 import java.io.File;

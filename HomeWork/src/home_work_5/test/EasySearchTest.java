@@ -4,7 +4,13 @@ import home_work_5.api.ISearchEngine;
 import home_work_5.dto.EasySearch;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class EasySearchTest {
 
     private ISearchEngine easySearch = new EasySearch();
@@ -25,50 +31,18 @@ class EasySearchTest {
             " Ежели я отказываюсь от чести быть при вас, то поверьте...\n" +
             " Умное, доброе и тонкое выражение светилось в лице Кутузова. Он перебил Болконского.";
 
-    @Test
-    void search1() {
-        Assertions.assertEquals(3, easySearch.search(text, "привет"));
+
+
+    @ParameterizedTest
+    @CsvFileSource(files = "C:\\JavaCourse\\HomeWork\\src\\home_work_5\\test.csv", delimiter = ';')
+    void easySearchTest(String input, String expected) {
+        long expect = Long.parseLong(expected);
+        Assertions.assertEquals(expect, easySearch.search(text, input));
     }
 
-    @Test
-    void search2() {
-        Assertions.assertEquals(2, easySearch.search(text, "как"));
-    }
-
-    @Test
-    void search3() {
-        Assertions.assertEquals(1, easySearch.search(text, "бабушка"));
-    }
-
-
-    @Test
-    void search4() {
-        Assertions.assertEquals(1, easySearch.search(text, "Привет-привет"));
-    }
-
-
-    @Test
-    void search5() {
-        Assertions.assertEquals(1, easySearch.search(text, "4-х"));
-    }
-
-    @Test
-    void search6() {
-        Assertions.assertEquals(2, easySearch.search(text2, "Андрей"));
-    }
-
-    @Test
-    void search7() {
-        Assertions.assertEquals(2, easySearch.search(text2, "князь"));
-    }
-
-    @Test
-    void search8() {
-        Assertions.assertEquals(3, easySearch.search(text2, "я"));
-    }
-
-    @Test
-    void search9() {
-        Assertions.assertEquals(0, easySearch.search(text2, "мама"));
+    @ParameterizedTest
+    @CsvFileSource(files = "C:\\JavaCourse\\HomeWork\\src\\home_work_5\\test2.csv", delimiter = ';')
+    void easySearchTest2(String input, String expected) {
+        Assertions.assertEquals(Long.parseLong(expected), easySearch.search(text2, input));
     }
 }

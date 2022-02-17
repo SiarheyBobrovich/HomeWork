@@ -24,9 +24,8 @@
 
   </properties>
 
-
-
   <dependencies>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -46,6 +45,7 @@
   <build>
     <finalName>mywebapp</finalName>
     <plugins>
+
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>

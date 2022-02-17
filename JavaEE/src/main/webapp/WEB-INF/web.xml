@@ -3,14 +3,30 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <!-- Добавляем сервлет -->
   <servlet>
-    <servlet-name>FirstServlet</servlet-name>
-    <servlet-class>org.siarhey.FirstServlet</servlet-class>
+    <servlet-name>FirstServlet</servlet-name> <!-- Название сервлета -->
+    <servlet-class>org.siarhey.FirstServlet</servlet-class> <!-- Путь до сервлета -->
   </servlet>
 
+  <!-- Конфигурация сервлетов -->
   <servlet-mapping>
-    <servlet-name>FirstServlet</servlet-name>
-    <url-pattern>/hello-world</url-pattern>
+    <servlet-name>FirstServlet</servlet-name> <!-- Сервлет -->
+    <url-pattern>/hello-world</url-pattern> <!-- Ссылка браузера -->
   </servlet-mapping>
+
+  <!-- Конфигурация jsp -->
+  <servlet>
+      <servlet-name>FirstJsp</servlet-name> <!-- jsp-file -->
+      <jsp-file>/firstJsp.jsp</jsp-file> <!-- jsp-file -->
+    </servlet>
+
+  <!-- Конфигурация jsp -->
+  <servlet-mapping>
+    <servlet-name>FirstJsp</servlet-name> <!-- jsp -->
+    <url-pattern>/hello-world-jsp</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
+
 
 </web-app>

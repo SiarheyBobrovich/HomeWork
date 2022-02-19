@@ -3,40 +3,52 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
-  <!-- Добавляем сервлет -->
+  <!-- Добавляем сервлет FirstServlet -->
   <servlet>
     <servlet-name>FirstServlet</servlet-name> <!-- Название сервлета -->
     <servlet-class>org.siarhey.FirstServlet</servlet-class> <!-- Путь до сервлета -->
   </servlet>
 
-  <!-- Конфигурация сервлетов -->
+  <!-- Конфигурация сервлетов FirstServlet -->
   <servlet-mapping>
     <servlet-name>FirstServlet</servlet-name> <!-- Сервлет -->
     <url-pattern>/hello-world</url-pattern> <!-- Ссылка браузера -->
   </servlet-mapping>
 
-  <!-- Добавляем сервлет 2 -->
+  <!-- Добавляем сервлет 2 HelloServlet -->
   <servlet>
     <servlet-name>HelloServlet</servlet-name> <!-- Название сервлета -->
     <servlet-class>org.siarhey.HelloServlet</servlet-class> <!-- Путь до сервлета -->
   </servlet>
 
-  <!-- Конфигурация сервлетов -->
+  <!-- Конфигурация сервлета 2 HelloServlet -->
   <servlet-mapping>
     <servlet-name>HelloServlet</servlet-name> <!-- Сервлет -->
     <url-pattern>/hello</url-pattern> <!-- Ссылка браузера -->
   </servlet-mapping>
 
-  <!-- Конфигурация jsp -->
+  <!-- Конфигурация jsp 1 FirstJsp -->
   <servlet>
       <servlet-name>FirstJsp</servlet-name> <!-- jsp-file -->
       <jsp-file>/firstJsp.jsp</jsp-file> <!-- jsp-file -->
     </servlet>
 
-  <!-- Конфигурация jsp -->
+  <!-- Конфигурация jsp 1 FirstJsp -->
   <servlet-mapping>
     <servlet-name>FirstJsp</servlet-name> <!-- jsp -->
     <url-pattern>/hello-world-jsp</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
+  <!-- Конфигурация jsp 2 jsp4 -->
+  <servlet>
+    <servlet-name>jsp4</servlet-name> <!-- jsp-file -->
+    <jsp-file>/jsp4.jsp</jsp-file> <!-- jsp-file -->
+  </servlet>
+
+  <!-- Конфигурация jsp 2 jsp4 -->
+  <servlet-mapping>
+    <servlet-name>jsp4</servlet-name> <!-- jsp -->
+    <url-pattern>/helloJsp</url-pattern> <!-- Ссылка браузера -->
   </servlet-mapping>
 
 

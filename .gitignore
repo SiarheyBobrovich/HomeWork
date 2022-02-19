@@ -7,4 +7,6 @@ out/
 ClassWork
 src/home_work_3/calcs/additional/CalculatorStringExpression2.java
 *.txt
-apache-tomcat-8.5.75
+/JavaEE/target/
+*.class
+

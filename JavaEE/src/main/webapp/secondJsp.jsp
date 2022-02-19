@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>First JSP</title>
+        <title>Second JSP</title>
     </head>
     <body>
         <h1>Testing JSP</h1>

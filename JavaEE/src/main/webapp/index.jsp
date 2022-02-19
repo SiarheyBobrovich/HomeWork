@@ -18,6 +18,8 @@
             <p><a href="/secondJsp.jsp"> secondJsp </a></p>
             <p><a href="/thirdJsp.jsp"> thirdJsp </a></p>
             <p><a href="/helloJsp?name=Siarhey&surname=Bobrovich"> jsp4 </a></p>
-            <p><a href="/helloJsp?name=Siarhey&surname=Bobrovich"> jsp4 </a></p>
+            <p><a href="/redirect"> RedirectServlet -> google.com </a></p>
+            <p><a href="/redirect2"> RedirectServlet2 -> myPage </a></p>
+            <p><a href="/forward"> ForwardServlet </a></p>
     </body>
 </html>

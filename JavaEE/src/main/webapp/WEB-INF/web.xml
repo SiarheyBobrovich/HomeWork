@@ -27,6 +27,44 @@
     <url-pattern>/hello</url-pattern> <!-- Ссылка браузера -->
   </servlet-mapping>
 
+  <!-- Добавляем сервлет 3 RedirectServlet -->
+  <servlet>
+    <servlet-name>RedirectServlet</servlet-name> <!-- Название сервлета -->
+    <servlet-class>org.siarhey.RedirectServlet</servlet-class> <!-- Путь до сервлета -->
+  </servlet>
+
+  <!-- Конфигурация сервлета 3 RedirectServlet -->
+  <servlet-mapping>
+    <servlet-name>RedirectServlet</servlet-name> <!-- Сервлет -->
+    <url-pattern>/redirect</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
+  <!-- Добавляем сервлет 4 RedirectServlet2 -->
+  <servlet>
+    <servlet-name>RedirectServlet2</servlet-name> <!-- Название сервлета -->
+    <servlet-class>org.siarhey.RedirectServlet2</servlet-class> <!-- Путь до сервлета -->
+  </servlet>
+
+  <!-- Конфигурация сервлета 4 RedirectServlet2 -->
+  <servlet-mapping>
+    <servlet-name>RedirectServlet2</servlet-name> <!-- Сервлет -->
+    <url-pattern>/redirect2</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
+  <!-- Добавляем сервлет 5 ForwardServlet -->
+  <servlet>
+    <servlet-name>ForwardServlet</servlet-name> <!-- Название сервлета -->
+    <servlet-class>org.siarhey.ForwardServlet</servlet-class> <!-- Путь до сервлета -->
+  </servlet>
+
+  <!-- Конфигурация сервлета 5 ForwardServlet -->
+  <servlet-mapping>
+    <servlet-name>ForwardServlet</servlet-name> <!-- Сервлет -->
+    <url-pattern>/forward</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
+
+
   <!-- Конфигурация jsp 1 FirstJsp -->
   <servlet>
       <servlet-name>FirstJsp</servlet-name> <!-- jsp-file -->

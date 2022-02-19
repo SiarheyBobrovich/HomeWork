@@ -4,7 +4,7 @@
         <title>First JSP</title>
     </head>
     <body>
-        <h1>Testing JSP</h1>
+        <h1>First JSP</h1>
         <p>
             <%
                 java.util.Date now = new java.util.Date();

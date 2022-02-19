@@ -15,6 +15,18 @@
     <url-pattern>/hello-world</url-pattern> <!-- Ссылка браузера -->
   </servlet-mapping>
 
+  <!-- Добавляем сервлет 2 -->
+  <servlet>
+    <servlet-name>HelloServlet</servlet-name> <!-- Название сервлета -->
+    <servlet-class>org.siarhey.HelloServlet</servlet-class> <!-- Путь до сервлета -->
+  </servlet>
+
+  <!-- Конфигурация сервлетов -->
+  <servlet-mapping>
+    <servlet-name>HelloServlet</servlet-name> <!-- Сервлет -->
+    <url-pattern>/hello</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
   <!-- Конфигурация jsp -->
   <servlet>
       <servlet-name>FirstJsp</servlet-name> <!-- jsp-file -->

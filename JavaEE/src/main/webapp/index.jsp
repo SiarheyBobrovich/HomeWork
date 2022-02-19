@@ -21,5 +21,7 @@
             <p><a href="/redirect"> RedirectServlet -> google.com </a></p>
             <p><a href="/redirect2"> RedirectServlet2 -> myPage </a></p>
             <p><a href="/forward"> ForwardServlet </a></p>
+            <p><a href="/session"> SessionsServlet </a></p>
+            <p><a href="/shop"> ShopServlet </a></p>
     </body>
 </html>

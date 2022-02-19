@@ -3,6 +3,10 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+
+
+  <!-- Servlets -->
+
   <!-- Добавляем сервлет FirstServlet -->
   <servlet>
     <servlet-name>FirstServlet</servlet-name> <!-- Название сервлета -->
@@ -63,7 +67,49 @@
     <url-pattern>/forward</url-pattern> <!-- Ссылка браузера -->
   </servlet-mapping>
 
+  <!-- Добавляем сервлет 6 SessionServlet -->
+  <servlet>
+    <servlet-name>SessionsServlet</servlet-name> <!-- Название сервлета -->
+    <servlet-class>org.siarhey.SessionsServlet</servlet-class> <!-- Путь до сервлета -->
+  </servlet>
 
+  <!-- Конфигурация сервлета 6 SessionServlet -->
+  <servlet-mapping>
+    <servlet-name>SessionsServlet</servlet-name> <!-- Сервлет -->
+    <url-pattern>/session</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
+  <!-- Добавляем сервлет 7 ShopServlet -->
+  <servlet>
+    <servlet-name>ShopServlet</servlet-name> <!-- Название сервлета -->
+    <servlet-class>org.siarhey.shop.servlets.ShopServlet</servlet-class> <!-- Путь до сервлета -->
+  </servlet>
+
+  <!-- Конфигурация сервлета 7 ShopServlet -->
+  <servlet-mapping>
+    <servlet-name>ShopServlet</servlet-name> <!-- Сервлет -->
+    <url-pattern>/shop</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
+  <!-- Добавляем сервлет 8 RegistrationServlet -->
+  <servlet>
+    <servlet-name>RegistrationServlet</servlet-name> <!-- Название сервлета -->
+    <servlet-class>org.siarhey.shop.servlets.RegistrationServlet</servlet-class> <!-- Путь до сервлета -->
+  </servlet>
+
+  <!-- Конфигурация сервлета 8 RegistrationServlet -->
+  <servlet-mapping>
+    <servlet-name>RegistrationServlet</servlet-name> <!-- Сервлет -->
+    <url-pattern>/registration</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
+
+
+
+
+
+
+  <!-- JSP files -->
 
   <!-- Конфигурация jsp 1 FirstJsp -->
   <servlet>
@@ -87,6 +133,18 @@
   <servlet-mapping>
     <servlet-name>jsp4</servlet-name> <!-- jsp -->
     <url-pattern>/helloJsp</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
+  <!-- Конфигурация jsp 3 jsp5 -->
+  <servlet>
+    <servlet-name>jsp5</servlet-name> <!-- jsp-file -->
+    <jsp-file>/jsp5.jsp</jsp-file> <!-- jsp-file -->
+  </servlet>
+
+  <!-- Конфигурация jsp 3 jsp5 -->
+  <servlet-mapping>
+    <servlet-name>jsp5</servlet-name> <!-- jsp -->
+    <url-pattern>/showCart</url-pattern> <!-- Ссылка браузера -->
   </servlet-mapping>
 
 

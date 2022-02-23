@@ -103,6 +103,18 @@
     <url-pattern>/registration</url-pattern> <!-- Ссылка браузера -->
   </servlet-mapping>
 
+  <!-- Добавляем сервлет 9 LibraryServlet -->
+  <servlet>
+    <servlet-name>LibraryServlet</servlet-name> <!-- Название сервлета -->
+    <servlet-class>org.siarhey.LibraryServlet</servlet-class> <!-- Путь до сервлета -->
+  </servlet>
+
+  <!-- Конфигурация сервлета 9 LibraryServlet -->
+  <servlet-mapping>
+    <servlet-name>LibraryServlet</servlet-name> <!-- Сервлет -->
+    <url-pattern>/library</url-pattern> <!-- Ссылка браузера -->
+  </servlet-mapping>
+
 
 
 

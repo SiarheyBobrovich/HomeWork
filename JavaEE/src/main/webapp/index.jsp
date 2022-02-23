@@ -23,5 +23,6 @@
             <p><a href="/forward"> ForwardServlet </a></p>
             <p><a href="/session"> SessionsServlet </a></p>
             <p><a href="/shop"> ShopServlet </a></p>
+            <p><a href="/library"> Library </a></p>
     </body>
 </html>
